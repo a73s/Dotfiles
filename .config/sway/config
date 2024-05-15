@@ -26,7 +26,7 @@ set $menu wofi | xargs swaymsg exec --
 
 ### Output configuration
 # walpaper used for background and lockscreen
-set $wallpaper '/usr/share/backgrounds/gnome/adwaita-d.jxl'
+set $wallpaper '/usr/share/backgrounds/gnome/blobs-l.svg'
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $wallpaper fill
 set $output-primary DP-1
