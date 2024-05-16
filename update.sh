@@ -17,26 +17,23 @@ function countdown() {
     sleep 1
 }
 
-yes=0
-restart=0
-shutdown=0
+function help() {
+    echo "Args:"
+    echo "-h: help"
+    echo "-y: yes to all promts"
+    echo "-r: reboot after updating"
+    echo "-s: shutdown after updating"
+    exit
+}
 
-#parse flags
-for flag in $@
-do
-    subflag=${flag:1:100}
+function parseSingleLetterFlags() {
+
     for((i = 0; i < ${#subflag}; i++))
     do
         case ${subflag:i:1} in
-            "-")
-            ;;
+
             "h")
-                echo "Args:"
-                echo "-h: help"
-                echo "-y: yes to all promts"
-                echo "-r: reboot after updating"
-                echo "-s: shutdown after updating"
-                #exit
+                help
             ;;
             "y")
                 yes=1
@@ -47,13 +44,45 @@ do
             "s")
                 shutdown=1
             ;;
+            *)
+                echo "'$flag' not recognized"
+                exit
+            ;;
         esac
     done
+}
+
+yes=0
+restart=0
+shutdown=0
+
+#parse flags
+for flag in $@
+do
+    subflag=${flag:1:100}
+
+    case $subflag in
+        "help")
+            help
+        ;;
+        "yes")
+            yes=1
+        ;;
+        "restart")
+            restart=1
+        ;;
+        "shutdown")
+            shutdown=1
+        ;;
+        *)
+            parseSingleLetterFlags
+        ;;
+    esac
 done
 
 echo "Updating system..."
 
-if((yes)); then
+if(($yes)); then
     sudo dnf update -y
 else
     sudo dnf update
@@ -66,7 +95,7 @@ fi
 echo "##############################################################################################"
 echo "Updating Flatpaks..."
 
-if((yes)); then
+if(($yes)); then
     flatpak update -y
 else
     flatpak update
