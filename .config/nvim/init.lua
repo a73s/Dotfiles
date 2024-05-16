@@ -749,7 +749,7 @@ require('lazy').setup({
         'lukas-reineke/indent-blankline.nvim',
         main = 'ibl',
         opts = {
-            indent = {tab_char = '┋', char = '▎', priority = 0}
+            indent = {tab_char = '┋', char = '▎'}
         },
     },
 
