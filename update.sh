@@ -18,11 +18,16 @@ function countdown() {
 }
 
 function help() {
-    echo "Args:"
-    echo "-h: help"
-    echo "-y: yes to all promts"
-    echo "-r: reboot after updating"
-    echo "-s: shutdown after updating"
+    echo "Usage"
+    echo "update.sh [options]"
+    echo "EX:"
+    echo "update.sh -yr     or      update.sh --yes --restart"
+    echo ""
+    echo "Options:"
+    echo "-h, --help: help"
+    echo "-y, --yes: yes to all promts"
+    echo "-r, --restart: reboot after updating"
+    echo "-s, --shutdown: shutdown after updating"
     exit
 }
 
@@ -62,16 +67,16 @@ do
     subflag=${flag:1:100}
 
     case $subflag in
-        "help")
+        "-help")
             help
         ;;
-        "yes")
+        "-yes")
             yes=1
         ;;
-        "restart")
+        "-restart")
             restart=1
         ;;
-        "shutdown")
+        "-shutdown")
             shutdown=1
         ;;
         *)
