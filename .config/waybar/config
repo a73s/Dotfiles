@@ -87,12 +87,12 @@
 
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "alacritty -e bash -ci btop"
+        "on-click": "bash -c gnome-system-monitor -r"
     },
 
     "memory": {
         "format": "{}% ",
-        "on-click": "alacritty -e bash -ci btop"
+        "on-click": "bash -c gnome-system-monitor -r"
     },
 
     "temperature": {
