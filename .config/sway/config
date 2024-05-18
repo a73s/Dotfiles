@@ -4,6 +4,8 @@ gaps inner 0
 default_border pixel 3
 default_border normal
 
+mouse_warping container
+
 exec sleep 1 && nextcloud
 exec sleep 1 && /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=keepassxc --file-forwarding org.keepassxc.KeePassXC @@ %f @@ 
 #exec sleep 1 && dnfdragora-updater
