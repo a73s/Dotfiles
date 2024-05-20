@@ -86,8 +86,9 @@ input * {
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym Print exec grimshot save area - | wl-copy
-bindsym Mod1+Print exec grimshot save area
+
+bindsym Mod1+Print exec grimshot save area - | wl-copy
+bindsym Print exec grimshot save area
 
 #To raise the volume
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.0
