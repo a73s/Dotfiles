@@ -104,7 +104,6 @@ bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
     # Start a terminal
     bindsym $mod+Return exec $term
 
-
     bindsym $mod+Backslash exec $filemanager
 
     # Start screen locker
