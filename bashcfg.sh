@@ -9,3 +9,4 @@ function detach() {
 alias open_pdf="detach bash -c evince"
 alias open_image="detach bash -c loupe"
 alias open_video="detach bash -c celluloid"
+alias list="ls -al"
