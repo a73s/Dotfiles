@@ -24,9 +24,7 @@ vim.opt.showmode = false
 vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
+vim.opt.breakindent = true -- Save undo history
 vim.opt.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
@@ -164,6 +162,11 @@ require('lazy').setup({
     -- See `:help gitsigns` to understand what the configuration keys do
     { -- Adds git related signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
+
+        -- keys = {
+        --     { '<leader>g', '<cmd>Gitsigns diffthis<CR>', desc = "[G]it [D]iff"},
+        -- },
+
         opts = {
             signs = {
                 add = { text = '+' },
@@ -203,6 +206,7 @@ require('lazy').setup({
                 ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
                 ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
                 ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+                --['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
             }
         end,
     },
