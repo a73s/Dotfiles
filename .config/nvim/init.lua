@@ -95,6 +95,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Keybind to delete without overwriting clipboard
+vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -196,7 +199,7 @@ require('lazy').setup({
             -- Document existing key chains
             require('which-key').register {
                 ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-                ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+                ['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
                 ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
                 ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
                 ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
@@ -256,6 +259,7 @@ require('lazy').setup({
                 --   },
                 -- },
                 -- pickers = {}
+
                 extensions = {
                     ['ui-select'] = {
                         require('telescope.themes').get_dropdown(),
@@ -367,7 +371,7 @@ require('lazy').setup({
 
                     -- Fuzzy find all the symbols in your current document.
                     --  Symbols are things like variables, functions, types, etc.
-                    map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+                    map('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[F]ile [S]ymbols (Doc Symbols)')
 
                     -- Fuzzy find all the symbols in your current workspace.
                     --  Similar to document symbols, except searches over your entire project.
