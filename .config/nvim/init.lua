@@ -638,7 +638,9 @@ require('lazy').setup({
         event = 'VimEnter',
         opts = {},
         config = function()
-            vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle [U]ndo Tree' })
+            -- vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle [U]ndo Tree' })
+            -- this version allows me to automatically switch to the openned pane
+            vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR><C-w><C-h>', { desc = 'Toggle [U]ndo Tree' })
         end,
     },
 
