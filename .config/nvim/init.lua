@@ -163,9 +163,19 @@ require('lazy').setup({
     { -- Adds git related signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
 
-        -- keys = {
-        --     { '<leader>g', '<cmd>Gitsigns diffthis<CR>', desc = "[G]it [D]iff"},
-        -- },
+        event = 'VimEnter',
+
+        keys = {
+            { '<leader>gd', '<cmd>Gitsigns diffthis<CR><C-w><C-h>', desc = "[G]it [D]iff"},
+            { '<leader>gn', '<cmd>Gitsigns nav_hunk next<CR>', desc = "[G]it, [N]ext Hunk"},
+            { '<leader>gp', '<cmd>Gitsigns nav_hunk prev<CR>', desc = "[G]it, [P]revious Hunk"},
+            { '<leader>gf', '<cmd>Gitsigns nav_hunk first<CR>', desc = "[G]it, [F]irst Hunk"},
+            { '<leader>gl', '<cmd>Gitsigns nav_hunk last<CR>', desc = "[G]it, [L]ast Hunk"},
+            -- removed this bind since its kinda dangerous.
+            -- replaced with reset_hunk so the changes will be more local to the cursor
+            -- { '<leader>gr', '<cmd>Gitsigns reset_buffer<CR>', desc = "[G]it, [R]eset Buffer Changes"},
+            { '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>', desc = "[G]it, [R]eset Hunk"},
+        },
 
         opts = {
             signs = {
@@ -206,7 +216,7 @@ require('lazy').setup({
                 ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
                 ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
                 ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-                --['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+                ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
             }
         end,
     },
