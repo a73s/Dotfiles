@@ -13,7 +13,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
--- vim.opt.mouse = 'a'
+vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -559,11 +559,21 @@ require('lazy').setup({
         end,
     },
 
+    -- {
+    --     'Mofiqul/vscode.nvim',
+    --     priority = 1000, -- Make sure to load this before all the other start plugins.
+    --     init = function()
+    --         vim.cmd.colorscheme 'vscode'
+    --
+    --         -- You can configure highlights by doing something like:
+    --         vim.cmd.hi 'Comment gui=none'
+    --     end,
+    -- },
     {
-        'Mofiqul/vscode.nvim',
+        'rebelot/kanagawa.nvim',
         priority = 1000, -- Make sure to load this before all the other start plugins.
         init = function()
-            vim.cmd.colorscheme 'vscode'
+            vim.cmd.colorscheme 'kanagawa-dragon'
 
             -- You can configure highlights by doing something like:
             vim.cmd.hi 'Comment gui=none'
@@ -587,6 +597,9 @@ require('lazy').setup({
             -- - sd'     - [S]urround [D]elete [']quotes
             -- - sr)'  - [S]urround [R]eplace [)] [']
             -- require('mini.surround').setup()
+
+            -- autopairs
+            require('mini.pairs').setup()
 
             -- Simple and easy statusline.
             local statusline = require 'mini.statusline'
@@ -642,12 +655,6 @@ require('lazy').setup({
             -- this version allows me to automatically switch to the openned pane
             vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR><C-w><C-h>', { desc = 'Toggle [U]ndo Tree' })
         end,
-    },
-
-    {
-        'windwp/nvim-autopairs',
-        event = 'InsertEnter',
-        config = true,
     },
 
     {
