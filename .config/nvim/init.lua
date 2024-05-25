@@ -200,6 +200,7 @@ require('lazy').setup({
                 ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
                 ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
                 ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+                ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
             }
         end,
     },
@@ -681,7 +682,53 @@ require('lazy').setup({
             { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
-    }
+    },
+
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+
+
+        config = function()
+
+            local harpoon = require('harpoon')
+            harpoon:setup()
+            -- uncommenting this block will give telescope integration, its kinda mid imo
+            -- also add telescope as a dependency if you re enable this
+--[[
+            -- basic telescope configuration
+            local conf = require("telescope.config").values
+            local function toggle_telescope(harpoon_files)
+                local file_paths = {}
+                for _, item in ipairs(harpoon_files.items) do
+                    table.insert(file_paths, item.value)
+                end
+
+                require("telescope.pickers").new({}, {
+                    prompt_title = "Harpoon",
+                    finder = require("telescope.finders").new_table({
+                        results = file_paths,
+                    }),
+                    previewer = conf.file_previewer({}),
+                    sorter = conf.generic_sorter({}),
+                }):find()
+            end
+
+            vim.keymap.set("n", "<leader>hh", function() toggle_telescope(harpoon:list()) end, { desc = "[H]arpoon Menu" })
+]]
+            vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "[H]arpoon Menu" })
+            vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = "[H]arpoon [A]dd" })
+            vim.keymap.set("n", "<leader>h1", function() harpoon:list():select(1) end, { desc = "[H]arpoon Select [1]" })
+            vim.keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end, { desc = "[H]arpoon Select [2]" })
+            vim.keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end, { desc = "[H]arpoon Select [3]" })
+            vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end, { desc = "[H]arpoon Select [4]" })
+
+            -- Toggle previous & next buffers stored within Harpoon list
+            vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end, { desc = "[H]arpoon [P]rev" })
+            vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "[H]arpoon [N]ext" })
+        end,
+    },
     -- require 'kickstart.plugins.debug',
     -- require 'kickstart.plugins.lint',
 
