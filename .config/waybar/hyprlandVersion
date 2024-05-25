@@ -98,7 +98,7 @@
 
     "memory": {
         "interval": 2,
-        "format": "{used} GiB / {percentage}% GB ",
+        "format": "{used} GiB Used ",
         "on-click": "bash -c gnome-system-monitor -r"
     },
 

@@ -1,8 +1,0 @@
-waybar
-swayidle
-swaylock
-playerctl for media keys
-wpctl for keyboard audio control
-alacritty for terminal
-SwayAudioIdleInhibit
-autotiling
