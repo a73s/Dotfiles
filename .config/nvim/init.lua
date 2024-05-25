@@ -6,8 +6,7 @@ vim.opt.expandtab = true
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = true
+-- Set to true if you have a Nerd Font installed vim.g.have_nerd_font = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -560,26 +559,26 @@ require('lazy').setup({
         end,
     },
 
-    -- {
-    --     'Mofiqul/vscode.nvim',
-    --     priority = 1000, -- Make sure to load this before all the other start plugins.
-    --     init = function()
-    --         vim.cmd.colorscheme 'vscode'
-    --
-    --         -- You can configure highlights by doing something like:
-    --         vim.cmd.hi 'Comment gui=none'
-    --     end,
-    -- },
     {
-        'rebelot/kanagawa.nvim',
+        'Mofiqul/vscode.nvim',
         priority = 1000, -- Make sure to load this before all the other start plugins.
         init = function()
-            vim.cmd.colorscheme 'kanagawa-dragon'
+            vim.cmd.colorscheme 'slate'
 
             -- You can configure highlights by doing something like:
             vim.cmd.hi 'Comment gui=none'
         end,
     },
+    -- {
+    --     'rebelot/kanagawa.nvim',
+    --     priority = 1000, -- Make sure to load this before all the other start plugins.
+    --     init = function()
+    --         vim.cmd.colorscheme 'slate'
+    --
+    --         -- You can configure highlights by doing something like:
+    --         vim.cmd.hi 'Comment gui=none'
+    --     end,
+    -- },
 
     { -- Collection of various small independent plugins/modules
         'echasnovski/mini.nvim',
