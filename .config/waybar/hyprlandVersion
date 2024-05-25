@@ -9,7 +9,7 @@
     "modules-left": ["hyprland/workspaces", "hyprland/mode"],
     //"modules-center": ["hyprland/window"],
     "modules-center": [],
-    "modules-right": ["idle_inhibitor", "memory", "cpu", "pulseaudio", "network", "clock", "tray"],
+    "modules-right": ["idle_inhibitor", "memory", "cpu", "pulseaudio", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -98,7 +98,7 @@
 
     "memory": {
         "interval": 2,
-        "format": "{percentage}% ",
+        "format": "{used} GiB / {percentage}% GB ",
         "on-click": "bash -c gnome-system-monitor -r"
     },
 
