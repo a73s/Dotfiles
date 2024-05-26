@@ -4,3 +4,6 @@ import = [
 
 [font]
 size = 10.0
+
+[scrolling]
+history = 50000
