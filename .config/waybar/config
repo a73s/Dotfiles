@@ -1,164 +1,169 @@
 {
-    //"layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "output": ["DP-1"],
-    //"gtk-layer-shell": true,
-    // "height": 28, // Waybar height (to be removed for auto height)
-    // "width": 1920, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
-    //"modules-center": ["hyprland/window"],
-    "modules-center": [],
-    "modules-right": ["idle_inhibitor", "memory", "cpu", "pulseaudio", "clock", "tray"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+	//"layer": "top", // Waybar at top layer
+	"position": "top", // Waybar position (top|bottom|left|right)
+	"output": ["DP-1"],
+	//"gtk-layer-shell": true,
+	// "height": 28, // Waybar height (to be removed for auto height)
+	// "width": 1920, // Waybar width
+	// Choose the order of the modules
+	"modules-left": ["hyprland/workspaces", "hyprland/mode"],
+	"modules-center": ["hyprland/window"],
+	//"modules-center": [],
+	"modules-right": ["idle_inhibitor", "memory", "cpu", "pulseaudio", "clock", "tray"],
+	// Modules configuration
+	// "sway/workspaces": {
+	//	   "disable-scroll": true,
+	//	   "all-outputs": true,
+	//	   "format": "{name}: {icon}",
+	//	   "format-icons": {
+	//		   "1": "",
+	//		   "2": "",
+	//		   "3": "",
+	//		   "4": "",
+	//		   "5": "",
+	//		   "urgent": "",
+	//		   "focused": "",
+	//		   "default": ""
+	//	   }
+	// },
 
-    "hyprland/workspaces": {
-        //"format":
-    },
+	"hyprland/workspaces": {
+	},
 
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
+	"hyprland/window": {
+		"format": "{title}",
+		"icon": true,
+		"icon-size": 18,
+	},
 
-    "mpd": {
-        "server": "127.0.0.1",
-        "port": 6600,
-        "tooltip": false,
-        "exec-if": "pgrep mpd",
-        //"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
-//        "format-disconnected": "Disconnected ",
-//        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "format-disconnected": "",
-        "format-stopped": "",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "max-length": 60,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "on": "<span color=\"#f53c3c\"></span> ",
-            "off": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        }
-    },
+	"sway/mode": {
+		"format": "<span style=\"italic\">{}</span>"
+	},
 
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
+	"mpd": {
+		"server": "127.0.0.1",
+		"port": 6600,
+		"tooltip": false,
+		"exec-if": "pgrep mpd",
+		//"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+		"format": "{stateIcon} {consumeIcon}{randomIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+//		  "format-disconnected": "Disconnected ",
+//		  "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+		"format-disconnected": "",
+		"format-stopped": "",
+		"unknown-tag": "N/A",
+		"interval": 2,
+		"max-length": 60,
+		"consume-icons": {
+			"on": " "
+		},
+		"random-icons": {
+			"on": "<span color=\"#f53c3c\"></span> ",
+			"off": " "
+		},
+		"repeat-icons": {
+			"on": " "
+		},
+		"single-icons": {
+			"on": "1 "
+		},
+		"state-icons": {
+			"paused": "",
+			"playing": ""
+		}
+	},
 
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        "reverse-direction": true
-    },
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
 
-    "clock": {
-        "timezone": "US/Chicaco",
-        "format": "{:%I:%M %p %m/%d/%Y} ",
-        "format-alt": "{:%I:%M %p %a, %b %d %C%y} ",
-        "tooltip": false,
-        //"on-click-right": "gsimplecal"
-    },
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10,
+		"reverse-direction": true
+	},
 
-    "cpu": {
-        "interval": 2,
-        "format": "{usage}% ",
-        "on-click": "bash -c gnome-system-monitor -r"
-    },
+	"clock": {
+		"timezone": "US/Chicaco",
+		"format": "{:%I:%M %p %m/%d/%Y} ",
+		"format-alt": "{:%I:%M %p %a, %b %d %C%y} ",
+		"tooltip": false,
+		//"on-click-right": "gsimplecal"
+	},
 
-    "memory": {
-        "interval": 2,
-        "format": "{used} GiB Used ",
-        "on-click": "bash -c gnome-system-monitor -r"
-    },
+	"cpu": {
+		"interval": 2,
+		"format": "{usage}% ",
+		"on-click": "bash -c gnome-system-monitor -r"
+	},
 
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
+	"memory": {
+		"interval": 2,
+		"format": "{used:4.2f} GiB Used ",
+		"on-click": "bash -c gnome-system-monitor -r"
+	},
 
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
-    },
+	"temperature": {
+		// "thermal-zone": 2,
+		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"critical-threshold": 80,
+		// "format-critical": "{temperatureC}°C {icon}",
+		"format": "{temperatureC}°C {icon}",
+		"format-icons": ["", "", ""]
+	},
 
-    "network": {
-        "interface": "enp34s0", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname} ",
-        "format-linked": "{ifname} ",
-        "format-disconnected": "Disconnected ⚠",
-        "on-click": "alacritty -e bash -ci nmtui",
-        //"on-click-right": "",
-        //"format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
+	"backlight": {
+		// "device": "acpi_video1",
+		"format": "{percent}% {icon}",
+		"format-icons": ["", ""]
+	},
 
-    "pulseaudio": {
-        "tooltip": false,
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon}  {format_source}",
-        "format-bluetooth-muted": " {icon}  {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click-right": "pavucontrol -t 0",
-        "on-click-middle": "wpctl set-source-mute @DEFAULT_SOURCE@ toggle",
-        "on-click": "pavucontrol -t 3"
-    },
-    
-        "bluetooth": {
-            "format": "{icon}",
-            "format-alt": "bluetooth: {status}",
-            "interval": 30,
-            "format-icons": {
-                "enabled": "",
-                "disabled": ""
-            },
-            "tooltip-format": "{status}"
-        },
+	"network": {
+		"interface": "enp34s0", // (Optional) To force the use of this interface
+		"format-wifi": "{essid} ({signalStrength}%) ",
+		"format-ethernet": "{ifname} ",
+		"format-linked": "{ifname} ",
+		"format-disconnected": "Disconnected ⚠",
+		"on-click": "alacritty -e bash -ci nmtui",
+		//"on-click-right": "",
+		//"format-alt": "{ifname}: {ipaddr}/{cidr}"
+	},
+
+	"pulseaudio": {
+		"tooltip": false,
+		// "scroll-step": 1, // %, can be a float
+		"format": "{volume}% {icon} {format_source}",
+		"format-bluetooth": "{volume}% {icon}  {format_source}",
+		"format-bluetooth-muted": " {icon}  {format_source}",
+		"format-muted": " {format_source}",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", "", ""]
+		},
+		"on-click-right": "pavucontrol -t 0",
+		"on-click-middle": "wpctl set-source-mute @DEFAULT_SOURCE@ toggle",
+		"on-click": "pavucontrol -t 3"
+	},
+	
+		"bluetooth": {
+			"format": "{icon}",
+			"format-alt": "bluetooth: {status}",
+			"interval": 30,
+			"format-icons": {
+				"enabled": "",
+				"disabled": ""
+			},
+			"tooltip-format": "{status}"
+		},
 },
