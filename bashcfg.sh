@@ -14,7 +14,7 @@ alias nv="nvim"
 alias v="vim"
 alias ccat="highlight --out-format=ansi"
 alias ls="ls -h --color=auto --group-directories-first"
-alias list="ls -al"
+alias list="ls -Al"
 
 alias pdf="detach evince"
 alias image="detach loupe"
