@@ -113,13 +113,11 @@ fi
 if(($restart));then
 echo "##############################################################################################"
 	echo "Restarting:"
-	countdown
-	systemctl reboot
+	countdown && systemctl reboot
 fi
 
 if(($shutdown));then
 echo "##############################################################################################"
 	echo "Shutting Down:"
-	countdown
-	systemctl poweroff
+	countdown && systemctl poweroff
 fi
