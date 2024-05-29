@@ -10,6 +10,8 @@ function detach() {
 
 # TODO: look into making a merge directoris command with rsync
 
+alias g="git"
+alias gs="git status"
 alias nv="nvim"
 alias v="vim"
 alias ccat="highlight --out-format=ansi"
