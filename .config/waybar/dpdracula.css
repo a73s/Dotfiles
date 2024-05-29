@@ -1,0 +1,126 @@
+@define-color bg-color-old rgb(68, 71, 90);               /* #3C413C */
+@define-color bg-color rgb(40, 42, 54);               /* #3C413C */
+@define-color bg-color-tray rgb (40, 42, 54);         /* #3C4144 */
+@define-color bg-color-0 rgb (40, 42, 54);            /* #3C4144 */
+@define-color bg-color-1 rgb(40, 42, 54);            /* #475f94 */
+@define-color bg-color-2 rgb(40, 42, 54);           /* #107AB0 */
+@define-color bg-color-3 rgb(40, 42, 54);            /* #017374 */
+@define-color bg-color-4 rgb(40, 42, 54);             /* #1F3B4D */
+@define-color bg-color-5 rgb(40, 42, 54);           /* #10A674 */
+@define-color bg-color-6 rgb(40, 42, 54);           /* #4984B8 */
+@define-color bg-color-7 rgb(40, 42, 54);               /* #000133 */
+@define-color bg-color-8 rgb(40, 42, 54);            /* #08787F */
+@define-color bg-color-9 rgb(40, 42, 54);             /* #214761 */
+@define-color bg-color-10 rgb(40, 42, 54);           /* #6C3461 */
+@define-color bg-color-11 rgb(40, 42, 54);             /* #005249 */
+@define-color bg-color-12 rgb(40, 42, 54);          /* #31668A */
+@define-color bg-color-13 rgb(40, 42, 54);           /* #6A6E09 */
+@define-color bg-color-14 rgb(40, 42, 54);          /* #5B7C99 */
+@define-color bg-color-15 rgb(40, 42, 54);            /* #1D2021 */
+@define-color bg-color-16 rgb(40, 42, 54);            /* #29293D  */
+
+@define-color fg-color rgb (248, 248, 242);           /* #f3f4f5 */
+@define-color alert-bg-color rgb (255, 85, 85);       /* #bd2c40 */
+@define-color alert-fg-color rgb (248, 248, 242);       /* #FFFFFF */
+@define-color inactive-fg-color rgb(144, 153, 162);   /* #9099a2 */
+@define-color inactive-bg-color rgb(68, 71, 90);      /* #404552 */
+
+* {
+	border: none;
+	font-family: Font Awesome, Roboto, Arial, sans-serif;
+	font-size: 13px;
+	color: #ffffff;
+	border-radius: 20px;
+}
+
+#window {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+window#waybar {
+	background: rgba(0, 0, 0, 0);
+	padding-left: 10px;
+	padding-right: 10px;
+}
+/*-----module groups----*/
+.modules-right {
+	background-color: @bg-color;
+	margin: 2px 10px 0 0;
+}
+.modules-center {
+	background-color: @bg-color;
+	margin: 2px 0 0 0;
+}
+.modules-left {
+	margin: 2px 0 0 5px;
+	background-color: @bg-color-tray;
+}
+/*-----modules indv----*/
+#workspaces button {
+	padding: 1px 5px;
+	background-color: transparent;
+}
+#workspaces button:hover {
+	box-shadow: inherit;
+	background-color: rgba(0,0,0,1);
+}
+
+#workspaces button.focused {
+	background-color: @bg-color;
+}
+
+#workspaces button.active {
+	background-color: @bg-color-old;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#custom-power,
+#custom-menu,
+#idle_inhibitor {
+	padding: 0 10px;
+}
+#mode {
+	color: #cc3436;
+	font-weight: bold;
+}
+#custom-power {
+	background-color: rgba(0,119,179,0.6);
+	border-radius: 100px;
+	margin: 5px 5px;
+	padding: 1px 1px 1px 6px;
+}
+/*-----Indicators----*/
+#idle_inhibitor.activated {
+	color: #2dcc36;
+}
+#pulseaudio.muted {
+	color: #cc3436;
+}
+#battery.charging {
+	color: #2dcc36;
+}
+#battery.warning:not(.charging) {
+	color: #e6e600;
+}
+#battery.critical:not(.charging) {
+	color: #cc3436;
+}
+#temperature.critical {
+	color: #cc3436;
+}
+/*-----Colors----*/
+/*
+ *rgba(0,85,102,1),#005566 --> Indigo(dye)
+ *rgba(0,43,51,1),#002B33 --> Dark Green 
+ *rgba(0,153,153,1),#009999 --> Persian Green 
+ *
+ */
