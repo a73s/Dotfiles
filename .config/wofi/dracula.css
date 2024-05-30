@@ -1,7 +1,8 @@
 window {
 margin: 0px;
-border: 1px solid #bd93f9;
+border: 2px solid #67a4d3;
 background-color: #282a36;
+border-radius: 7px;
 }
 
 #input {

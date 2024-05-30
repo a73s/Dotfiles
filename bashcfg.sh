@@ -10,6 +10,7 @@ function detach() {
 
 # TODO: look into making a merge directoris command with rsync
 
+alias gdb="gdb --tui"
 alias g="git"
 alias gs="git status"
 alias nv="nvim"
