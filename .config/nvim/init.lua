@@ -687,50 +687,20 @@ require('lazy').setup({
 
 			local harpoon = require('harpoon')
 			harpoon:setup()
-			-- uncommenting this block will give telescope integration, its kinda mid imo
-			-- also add telescope as a dependency if you re enable this
---[[
-			-- basic telescope configuration
-			local conf = require("telescope.config").values
-			local function toggle_telescope(harpoon_files)
-				local file_paths = {}
-				for _, item in ipairs(harpoon_files.items) do
-					table.insert(file_paths, item.value)
-				end
 
-				require("telescope.pickers").new({}, {
-					prompt_title = "Harpoon",
-					finder = require("telescope.finders").new_table({
-						results = file_paths,
-					}),
-					previewer = conf.file_previewer({}),
-					sorter = conf.generic_sorter({}),
-				}):find()
-			end
-
-			vim.keymap.set("n", "<leader>hh", function() toggle_telescope(harpoon:list()) end, { desc = "[H]arpoon Menu" })
-]]
-			vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "[H]arpoon Menu" })
-			vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = "[H]arpoon [A]dd" })
-			vim.keymap.set("n", "<leader>h1", function() harpoon:list():select(1) end, { desc = "[H]arpoon Select [1]" })
-			vim.keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end, { desc = "[H]arpoon Select [2]" })
-			vim.keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end, { desc = "[H]arpoon Select [3]" })
-			vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end, { desc = "[H]arpoon Select [4]" })
+			vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "[H]arpoon Menu" })
+			vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon [A]dd" })
+			vim.keymap.set("n", "<C-j>", function() harpoon:list():select(1) end, { desc = "Harpoon Select 1" })
+			vim.keymap.set("n", "<C-k>", function() harpoon:list():select(2) end, { desc = "Harpoon Select 2" })
+			vim.keymap.set("n", "<C-l>", function() harpoon:list():select(3) end, { desc = "Harpoon Select 3" })
+			vim.keymap.set("n", "<C-;>", function() harpoon:list():select(4) end, { desc = "Harpoon Select 4" })
 
 			-- Toggle previous & next buffers stored within Harpoon list
-			vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end, { desc = "[H]arpoon [P]rev" })
-			vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "[H]arpoon [N]ext" })
+			vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end, { desc = "[H]arpoon [P]rev" })
+			vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, { desc = "[H]arpoon [N]ext" })
 		end,
 	},
-	-- require 'kickstart.plugins.debug',
-	-- require 'kickstart.plugins.lint',
 
-	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-	--		This is the easiest way to modularize your config.
-	--
-	--	Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-	--		For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-	-- { import = 'custom.plugins' },
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
