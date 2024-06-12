@@ -67,7 +67,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 -- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -191,7 +191,7 @@ require('lazy').setup({
 				['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
 				['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
 				['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-				['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+				-- ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
 			}
 		end,
 	},
@@ -388,7 +388,7 @@ require('lazy').setup({
 				cmake = {},
 				-- grammarly = {},
 				-- gopls = {},
-				-- pyright = {},
+				pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 
@@ -690,10 +690,10 @@ require('lazy').setup({
 
 			vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "[H]arpoon Menu" })
 			vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon [A]dd" })
-			vim.keymap.set("n", "<C-j>", function() harpoon:list():select(1) end, { desc = "Harpoon Select 1" })
-			vim.keymap.set("n", "<C-k>", function() harpoon:list():select(2) end, { desc = "Harpoon Select 2" })
-			vim.keymap.set("n", "<C-l>", function() harpoon:list():select(3) end, { desc = "Harpoon Select 3" })
-			vim.keymap.set("n", "<C-;>", function() harpoon:list():select(4) end, { desc = "Harpoon Select 4" })
+			vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon Select [1]" })
+			vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon Select [2]" })
+			vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, { desc = "Harpoon Select [3]" })
+			vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, { desc = "Harpoon Select [4]" })
 
 			-- Toggle previous & next buffers stored within Harpoon list
 			vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end, { desc = "[H]arpoon [P]rev" })
