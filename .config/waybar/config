@@ -165,7 +165,7 @@
 			"car": "",
 			"default": ["", "", ""]
 		},
-		"on-click-right": "pavucontrol -t 0",
+		"on-click-right": "helvum",
 		"on-click-middle": "wpctl set-source-mute @DEFAULT_SOURCE@ toggle",
 		"on-click": "pavucontrol -t 3"
 	},
