@@ -38,7 +38,7 @@ vim.opt.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 1000
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -104,9 +104,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd('BufEnter', {
 
 	callback = function()
-		vim.opt.formatoptions:remove({"c", "r", "o"})
+		vim.opt.formatoptions:remove({ "c", "r", "o" })
 	end,
-	group = vim.api.nvim_create_augroup('general-custom-autocmd', {clear = true}),
+	group = vim.api.nvim_create_augroup('general-custom-autocmd', { clear = true }),
 	desc = "Disable New Line Comment",
 })
 
@@ -144,7 +144,7 @@ require('lazy').setup({
 	-- Use the `dependencies` key to specify the dependencies of a particular plugin
 
 
-	{'tpope/vim-sleuth'},
+	{ 'tpope/vim-sleuth' },
 
 	-- "gc" to comment visual regions/lines
 	{ 'numToStr/Comment.nvim', opts = {} },
@@ -155,15 +155,16 @@ require('lazy').setup({
 		event = 'VimEnter',
 
 		keys = {
-			{ '<leader>gd', '<cmd>Gitsigns diffthis<CR><C-w><C-h>', desc = "[G]it [D]iff"},
-			{ '<leader>gn', '<cmd>Gitsigns nav_hunk next<CR>', desc = "[G]it, [N]ext Hunk"},
-			{ '<leader>gp', '<cmd>Gitsigns nav_hunk prev<CR>', desc = "[G]it, [P]revious Hunk"},
-			{ '<leader>gf', '<cmd>Gitsigns nav_hunk first<CR>', desc = "[G]it, [F]irst Hunk"},
-			{ '<leader>gl', '<cmd>Gitsigns nav_hunk last<CR>', desc = "[G]it, [L]ast Hunk"},
+			{ '<leader>gd', '<cmd>Gitsigns diffthis<CR><C-w><C-h>', desc = "[G]it [D]iff" },
+			{ '<leader>gn', '<cmd>Gitsigns nav_hunk next<CR>',      desc = "[G]it, [N]ext Hunk" },
+			{ '<leader>gp', '<cmd>Gitsigns nav_hunk prev<CR>',      desc = "[G]it, [P]revious Hunk" },
+			{ '<leader>gf', '<cmd>Gitsigns nav_hunk first<CR>',     desc = "[G]it, [F]irst Hunk" },
+			{ '<leader>gl', '<cmd>Gitsigns nav_hunk last<CR>',      desc = "[G]it, [L]ast Hunk" },
 			-- removed this bind since its kinda dangerous.
 			-- replaced with reset_hunk so the changes will be more local to the cursor
 			-- { '<leader>gr', '<cmd>Gitsigns reset_buffer<CR>', desc = "[G]it, [R]eset Buffer Changes"},
-			{ '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>', desc = "[G]it, [R]eset Hunk"},
+			{ '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>',         desc = "[G]it, [R]eset Hunk" },
+			{ '<leader>gb', '<cmd>Gitsigns blame<CR>',              desc = "[G]it, [B]lame" },
 		},
 
 		opts = {
@@ -214,7 +215,7 @@ require('lazy').setup({
 			{ 'nvim-telescope/telescope-ui-select.nvim' },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+			{ 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
 		},
 		config = function()
 			-- Two important keymaps to use while in Telescope are:
@@ -364,7 +365,10 @@ require('lazy').setup({
 							buffer = event.buf,
 							callback = vim.lsp.buf.document_highlight,
 						})
-
+						-- vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+						-- 	buffer = event.buf,
+						-- 	callback = vim.lsp.buf.document_highlight,
+						-- })
 						vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
 							buffer = event.buf,
 							callback = vim.lsp.buf.clear_references,
@@ -382,8 +386,8 @@ require('lazy').setup({
 
 			local servers = {
 				clangd = {
-					cmd = {"clangd"},
-					args = {"-header-insertion=never"},
+					cmd = { "clangd" },
+					args = { "-header-insertion=never" },
 				},
 				cmake = {},
 				-- grammarly = {},
@@ -426,12 +430,10 @@ require('lazy').setup({
 		end,
 	},
 
-	--[[
 	{ -- Autoformat
 		'stevearc/conform.nvim',
 		lazy = false,
 		keys = {
-			
 			{
 				"<leader>f",
 				function()
@@ -440,20 +442,19 @@ require('lazy').setup({
 				mode = "",
 				desc = "[F]ormat buffer",
 			},
-			
 		},
 		opts = {
 			notify_on_error = false,
-			format_on_save = function(bufnr)
-				-- Disable "format_on_save lsp_fallback" for languages that don't
-				-- have a well standardized coding style. You can add additional
-				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
-				return {
-					timeout_ms = 500,
-					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-				}
-			end,
+			-- format_on_save = function(bufnr)
+			-- 	-- Disable "format_on_save lsp_fallback" for languages that don't
+			-- 	-- have a well standardized coding style. You can add additional
+			-- 	-- languages here or re-enable it for the disabled ones.
+			-- 	local disable_filetypes = { c = true, cpp = true }
+			-- 	return {
+			-- 		timeout_ms = 500,
+			-- 		lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+			-- 	}
+			-- end,
 			formatters_by_ft = {
 				-- lua = { 'stylua' },
 				-- Conform can also run multiple formatters sequentially
@@ -465,7 +466,6 @@ require('lazy').setup({
 			},
 		},
 	},
-	--]]
 
 	{ -- Autocompletion
 		'hrsh7th/nvim-cmp',
@@ -593,7 +593,7 @@ require('lazy').setup({
 			-- require('mini.surround').setup()
 
 			-- autopairs
-			require('mini.pairs').setup()
+			-- require('mini.pairs').setup()
 
 			-- Simple and easy statusline.
 			local statusline = require 'mini.statusline'
@@ -627,7 +627,6 @@ require('lazy').setup({
 			indent = { enable = true, disable = { 'ruby' } },
 		},
 		config = function(_, opts)
-
 			---@diagnostic disable-next-line: missing-fields
 			require('nvim-treesitter.configs').setup(opts)
 
@@ -656,7 +655,7 @@ require('lazy').setup({
 		'lukas-reineke/indent-blankline.nvim',
 		main = 'ibl',
 		opts = {
-			indent = {tab_char = '▎', char = '┋'}
+			indent = { tab_char = '▎', char = '┋' }
 		},
 	},
 
@@ -670,10 +669,10 @@ require('lazy').setup({
 			"TmuxNavigatePrevious",
 		},
 		keys = {
-			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
@@ -685,11 +684,11 @@ require('lazy').setup({
 
 
 		config = function()
-
 			local harpoon = require('harpoon')
 			harpoon:setup()
 
-			vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "[H]arpoon Menu" })
+			vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+				{ desc = "[H]arpoon Menu" })
 			vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon [A]dd" })
 			vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon Select [1]" })
 			vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon Select [2]" })
@@ -701,6 +700,12 @@ require('lazy').setup({
 			vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, { desc = "[H]arpoon [N]ext" })
 		end,
 	},
+
+	{
+		"windwp/nvim-autopairs",
+		even = "InsertEnter",
+		config = true
+	}
 
 }, {
 	ui = {
