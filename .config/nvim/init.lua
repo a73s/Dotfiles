@@ -169,10 +169,15 @@ require('lazy').setup({
 
 		opts = {
 			signs = {
-				add = { text = '+' },
-				change = { text = '~' },
-				delete = { text = '_' },
-				topdelete = { text = '‾' },
+				-- add = { text = '+' },
+				-- change = { text = '~' },
+				-- delete = { text = '_' },
+				-- topdelete = { text = '‾' },
+				-- changedelete = { text = '~' },
+				add          = { text = '▎' },
+				change       = { text = '▎' },
+				delete       = { text = '_' },
+				topdelete    = { text = '‾' },
 				changedelete = { text = '~' },
 			},
 		},
@@ -592,9 +597,6 @@ require('lazy').setup({
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			-- require('mini.surround').setup()
 
-			-- autopairs
-			-- require('mini.pairs').setup()
-
 			-- Simple and easy statusline.
 			local statusline = require 'mini.statusline'
 			statusline.setup { use_icons = vim.g.have_nerd_font }
@@ -610,6 +612,7 @@ require('lazy').setup({
 			--	Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
+
 	{ -- Highlight, edit, and navigate code
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
@@ -704,10 +707,25 @@ require('lazy').setup({
 	{
 		"windwp/nvim-autopairs",
 		even = "InsertEnter",
-		config = true
-	}
+		config = true,
+	},
 
-}, {
+	{
+		"dstein64/nvim-scrollview",
+		opts = {
+			-- excluded_filetypes = {'nerdtree'},
+			-- current_only = true,
+			base = 'right',
+			-- signs_on_startup = {'diagnostic', 'marks', 'search', 'conflicts'},
+			signs_on_startup = {'diagnostics', 'marks', 'search', 'conflicts'},
+			scrollview_line_limit = 20000,
+			diagnostics_severities = {vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN}
+		}
+	},
+
+},
+
+{
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
 		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
