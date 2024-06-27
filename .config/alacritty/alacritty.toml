@@ -5,5 +5,9 @@ import = [
 [font]
 size = 10.0
 
+[window.dimensions]
+columns = 160
+lines = 45
+
 [scrolling]
 history = 50000
