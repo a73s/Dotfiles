@@ -101,6 +101,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	end,
 })
 
+-- disable extending single line comments when hitting enter
 vim.api.nvim_create_autocmd('BufEnter', {
 
 	callback = function()
@@ -143,7 +144,6 @@ require('lazy').setup({
 	--
 	-- Use the `dependencies` key to specify the dependencies of a particular plugin
 
-
 	{ 'tpope/vim-sleuth' },
 
 	-- "gc" to comment visual regions/lines
@@ -183,24 +183,24 @@ require('lazy').setup({
 		},
 	},
 
-	{
-		'folke/which-key.nvim',
-		event = 'VimEnter',
-		config = function()
-			require('which-key').setup()
-
-			-- Document existing key chains
-			require('which-key').register {
-				['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-				['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
-				['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-				['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-				['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-				['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-				-- ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
-			}
-		end,
-	},
+	-- {
+	-- 	'folke/which-key.nvim',
+	-- 	event = 'VimEnter',
+	-- 	config = function()
+	-- 		require('which-key').setup()
+	--
+	-- 		-- Document existing key chains
+	-- 		require('which-key').register {
+	-- 			['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+	-- 			['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
+	-- 			['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+	-- 			['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+	-- 			['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+	-- 			['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+	-- 			-- ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+	-- 		}
+	-- 	end,
+	-- },
 
 	{
 		'nvim-telescope/telescope.nvim',
@@ -391,8 +391,17 @@ require('lazy').setup({
 
 			local servers = {
 				clangd = {
-					cmd = { "clangd" },
-					args = { "-header-insertion=never" },
+					cmd = {
+						"clangd",
+						"-header-insertion=never",
+						(function ()
+							if os.getenv("IDF_TOOLS_EXPORT_CMD") then
+								return "-query-driver=xtensa-esp-elf-gcc"
+							end
+						end)(),
+					},
+					-- args = {"-header-insertion=never", "query-driver=xtensa-esp-elf-gcc"},
+					-- args = {"-header-insertion=never"},
 				},
 				cmake = {},
 				-- grammarly = {},
@@ -435,18 +444,18 @@ require('lazy').setup({
 		end,
 	},
 
-	{ -- Autoformat
+	--[[ { -- Autoformat
 		'stevearc/conform.nvim',
 		lazy = false,
 		keys = {
-			{
-				"<leader>f",
-				function()
-					require("conform").format({ async = true, lsp_fallback = true })
-				end,
-				mode = "",
-				desc = "[F]ormat buffer",
-			},
+			-- {
+			-- 	"<leader>f",
+			-- 	function()
+			-- 		require("conform").format({ async = true, lsp_fallback = true })
+			-- 	end,
+			-- 	mode = "",
+			-- 	desc = "[F]ormat buffer",
+			-- },
 		},
 		opts = {
 			notify_on_error = false,
@@ -470,7 +479,7 @@ require('lazy').setup({
 				-- javascript = { { "prettierd", "prettier" } },
 			},
 		},
-	},
+	}, ]]
 
 	{ -- Autocompletion
 		'hrsh7th/nvim-cmp',
@@ -568,16 +577,6 @@ require('lazy').setup({
 			vim.cmd.hi 'Comment gui=none'
 		end,
 	},
-	-- {
-	--	   'rebelot/kanagawa.nvim',
-	--	   priority = 1000, -- Make sure to load this before all the other start plugins.
-	--	   init = function()
-	--		   vim.cmd.colorscheme 'slate'
-	--
-	--		   -- You can configure highlights by doing something like:
-	--		   vim.cmd.hi 'Comment gui=none'
-	--	   end,
-	-- },
 
 	{ -- Collection of various small independent plugins/modules
 		'echasnovski/mini.nvim',
@@ -704,11 +703,11 @@ require('lazy').setup({
 		end,
 	},
 
-	{
-		"windwp/nvim-autopairs",
-		even = "InsertEnter",
-		config = true,
-	},
+	-- {
+	-- 	"windwp/nvim-autopairs",
+	-- 	even = "InsertEnter",
+	-- 	config = true,
+	-- },
 
 	{
 		"dstein64/nvim-scrollview",
