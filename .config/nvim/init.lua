@@ -7,6 +7,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed vim.g.have_nerd_font = true
+vim.g.have_nerd_font = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -220,7 +221,9 @@ require('lazy').setup({
 			{ 'nvim-telescope/telescope-ui-select.nvim' },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+			{ 'nvim-tree/nvim-web-devicons',
+				enabled = vim.g.have_nerd_font,
+			},
 		},
 		config = function()
 			-- Two important keymaps to use while in Telescope are:
@@ -722,6 +725,12 @@ require('lazy').setup({
 		}
 	},
 
+	{
+		"jeffkreeftmeijer/vim-numbertoggle",
+		config = function()
+			vim.cmd("set number")
+		end,
+	},
 },
 
 {
