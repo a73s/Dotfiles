@@ -8,9 +8,9 @@ function detach() {
 	"$@" &
 }
 
-# TODO: look into making a merge directoris command with rsync
+alias dnf="dnf5"
 
-alias gdb="gdb --tui"
+# alias gdb="gdb --tui"
 alias g="git"
 alias gs="git status"
 alias nv="nvim"
