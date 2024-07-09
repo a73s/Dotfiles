@@ -420,20 +420,11 @@ require('lazy').setup({
 					cmd = {
 						"clangd",
 						"-header-insertion=never",
-						(function ()
-							if os.getenv("IDF_TOOLS_EXPORT_CMD") then
-								return "-query-driver=xtensa-esp-elf-gcc"
-							end
-						end)(),
 					},
-					-- args = {"-header-insertion=never", "query-driver=xtensa-esp-elf-gcc"},
-					-- args = {"-header-insertion=never"},
 				},
 				cmake = {},
-				-- grammarly = {},
-				-- gopls = {},
 				pyright = {},
-				-- rust_analyzer = {},
+
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 
 				lua_ls = {
