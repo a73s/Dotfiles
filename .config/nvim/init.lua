@@ -91,6 +91,29 @@ vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
 -- [[ Basic Autocommands ]]
 --	See `:help lua-guide-autocommands`
 
+
+-- Toggle relative numbers on window chage
+vim.api.nvim_create_augroup("custom-numbertoggle", {clear = true})
+
+vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter"}, {
+	desc = "Toggle on relative numbers",
+	group = "custom-numbertoggle",
+	callback = function()
+		if vim.opt.number and (vim.fn.mode() ~= 'i') then
+			vim.opt.relativenumber = true
+		end
+	end,
+})
+vim.api.nvim_create_autocmd({"BufLeave", "FocusLost", "WinLeave"}, {
+	desc = "Toggle off relative numbers",
+	group = "custom-numbertoggle",
+	callback = function()
+		if vim.opt.number then
+			vim.opt.relativenumber = false
+		end
+	end,
+})
+
 -- Highlight when yanking (copying) text
 --	Try it with `yap` in normal mode
 --	See `:help vim.highlight.on_yank()`
@@ -601,17 +624,13 @@ require('lazy').setup({
 
 			-- Simple and easy statusline.
 			local statusline = require 'mini.statusline'
-			statusline.setup { use_icons = vim.g.have_nerd_font }
+			statusline.setup({use_icons = vim.g.have_nerd_font})
 
 			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_location = function()
-				--return '%2l:%-2v'
-				--return '%2l:%2L, %p%%'
 				return '%p%%, %.l:%2L:%.c'
 			end
 
-			-- ... and there is more!
-			--	Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
 
@@ -725,12 +744,6 @@ require('lazy').setup({
 		}
 	},
 
-	{
-		"jeffkreeftmeijer/vim-numbertoggle",
-		config = function()
-			vim.cmd("set number")
-		end,
-	},
 },
 
 {
