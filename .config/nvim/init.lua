@@ -92,11 +92,10 @@ vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
 -- [[ Basic Autocommands ]]
 --	See `:help lua-guide-autocommands`
 
-
 -- Toggle relative numbers on window chage
 vim.api.nvim_create_augroup("custom-numbertoggle", {clear = true})
 
-vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter", "InsertLeave"}, {
+vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter"}, {
 	desc = "Toggle on relative numbers",
 	group = "custom-numbertoggle",
 	callback = function()
