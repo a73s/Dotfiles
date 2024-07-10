@@ -24,7 +24,8 @@ vim.opt.showmode = false
 vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.opt.breakindent = true -- Save undo history
+vim.opt.breakindent = true
+-- Save undo history
 vim.opt.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
@@ -95,7 +96,7 @@ vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
 -- Toggle relative numbers on window chage
 vim.api.nvim_create_augroup("custom-numbertoggle", {clear = true})
 
-vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter"}, {
+vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter", "InsertLeave"}, {
 	desc = "Toggle on relative numbers",
 	group = "custom-numbertoggle",
 	callback = function()
@@ -180,50 +181,50 @@ require('lazy').setup({
 
 		keys = {
 			{ '<leader>gd', '<cmd>Gitsigns diffthis<CR><C-w><C-h>', desc = "[G]it [D]iff" },
-			{ '<leader>gn', '<cmd>Gitsigns nav_hunk next<CR>',      desc = "[G]it, [N]ext Hunk" },
-			{ '<leader>gp', '<cmd>Gitsigns nav_hunk prev<CR>',      desc = "[G]it, [P]revious Hunk" },
-			{ '<leader>gf', '<cmd>Gitsigns nav_hunk first<CR>',     desc = "[G]it, [F]irst Hunk" },
-			{ '<leader>gl', '<cmd>Gitsigns nav_hunk last<CR>',      desc = "[G]it, [L]ast Hunk" },
+			{ '<leader>gn', '<cmd>Gitsigns nav_hunk next<CR>',		desc = "[G]it, [N]ext Hunk" },
+			{ '<leader>gp', '<cmd>Gitsigns nav_hunk prev<CR>',		desc = "[G]it, [P]revious Hunk" },
+			{ '<leader>gf', '<cmd>Gitsigns nav_hunk first<CR>',		desc = "[G]it, [F]irst Hunk" },
+			{ '<leader>gl', '<cmd>Gitsigns nav_hunk last<CR>',		desc = "[G]it, [L]ast Hunk" },
 			-- removed this bind since its kinda dangerous.
 			-- replaced with reset_hunk so the changes will be more local to the cursor
 			-- { '<leader>gr', '<cmd>Gitsigns reset_buffer<CR>', desc = "[G]it, [R]eset Buffer Changes"},
-			{ '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>',         desc = "[G]it, [R]eset Hunk" },
-			{ '<leader>gb', '<cmd>Gitsigns blame<CR>',              desc = "[G]it, [B]lame" },
+			{ '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>',			desc = "[G]it, [R]eset Hunk" },
+			{ '<leader>gb', '<cmd>Gitsigns blame<CR>',				desc = "[G]it, [B]lame" },
 		},
 
 		opts = {
 			signs = {
-				-- add = { text = '+' },
-				-- change = { text = '~' },
-				-- delete = { text = '_' },
-				-- topdelete = { text = '‾' },
-				-- changedelete = { text = '~' },
-				add          = { text = '▎' },
-				change       = { text = '▎' },
-				delete       = { text = '_' },
-				topdelete    = { text = '‾' },
+				add = { text = '+' },
+				change = { text = '~' },
+				delete = { text = '_' },
+				topdelete = { text = '‾' },
 				changedelete = { text = '~' },
+				-- add			 = { text = '▎' },
+				-- change		 = { text = '▎' },
+				-- delete		 = { text = '_' },
+				-- topdelete	 = { text = '‾' },
+				-- changedelete = { text = '~' },
 			},
 		},
 	},
 
 	-- {
-	-- 	'folke/which-key.nvim',
-	-- 	event = 'VimEnter',
-	-- 	config = function()
-	-- 		require('which-key').setup()
+	--	'folke/which-key.nvim',
+	--	event = 'VimEnter',
+	--	config = function()
+	--		require('which-key').setup()
 	--
-	-- 		-- Document existing key chains
-	-- 		require('which-key').register {
-	-- 			['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-	-- 			['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
-	-- 			['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-	-- 			['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-	-- 			['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-	-- 			['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-	-- 			-- ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
-	-- 		}
-	-- 	end,
+	--		-- Document existing key chains
+	--		require('which-key').register {
+	--			['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+	--			['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
+	--			['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+	--			['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+	--			['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+	--			['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+	--			-- ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+	--		}
+	--	end,
 	-- },
 
 	{
@@ -397,8 +398,8 @@ require('lazy').setup({
 							callback = vim.lsp.buf.document_highlight,
 						})
 						-- vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-						-- 	buffer = event.buf,
-						-- 	callback = vim.lsp.buf.document_highlight,
+						--	buffer = event.buf,
+						--	callback = vim.lsp.buf.document_highlight,
 						-- })
 						vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
 							buffer = event.buf,
@@ -466,25 +467,25 @@ require('lazy').setup({
 		lazy = false,
 		keys = {
 			-- {
-			-- 	"<leader>f",
-			-- 	function()
-			-- 		require("conform").format({ async = true, lsp_fallback = true })
-			-- 	end,
-			-- 	mode = "",
-			-- 	desc = "[F]ormat buffer",
+			--	"<leader>f",
+			--	function()
+			--		require("conform").format({ async = true, lsp_fallback = true })
+			--	end,
+			--	mode = "",
+			--	desc = "[F]ormat buffer",
 			-- },
 		},
 		opts = {
 			notify_on_error = false,
 			-- format_on_save = function(bufnr)
-			-- 	-- Disable "format_on_save lsp_fallback" for languages that don't
-			-- 	-- have a well standardized coding style. You can add additional
-			-- 	-- languages here or re-enable it for the disabled ones.
-			-- 	local disable_filetypes = { c = true, cpp = true }
-			-- 	return {
-			-- 		timeout_ms = 500,
-			-- 		lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-			-- 	}
+			--	-- Disable "format_on_save lsp_fallback" for languages that don't
+			--	-- have a well standardized coding style. You can add additional
+			--	-- languages here or re-enable it for the disabled ones.
+			--	local disable_filetypes = { c = true, cpp = true }
+			--	return {
+			--		timeout_ms = 500,
+			--		lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+			--	}
 			-- end,
 			formatters_by_ft = {
 				-- lua = { 'stylua' },
@@ -588,10 +589,61 @@ require('lazy').setup({
 		'Mofiqul/vscode.nvim',
 		priority = 1000, -- Make sure to load this before all the other start plugins.
 		init = function()
-			vim.cmd.colorscheme 'vscode'
 
+			local c = require('vscode.colors').get_colors()
+			require('vscode').setup(
+			{
+				-- Alternatively set style in setup
+				-- style = 'light'
+
+				-- Enable transparent background
+				-- transparent = true,
+
+				-- Enable italic comment
+				italic_comments = true,
+
+				-- Underline `@markup.link.*` variants
+				underline_links = true,
+
+				-- Disable nvim-tree background color
+				-- disable_nvimtree_bg = true,
+
+				-- Override colors (see ./lua/vscode/colors.lua)
+				-- color_overrides = {
+				-- 	vscLineNumber = '#FFFFFF',
+				-- },
+
+				-- Override highlight groups (see ./lua/vscode/theme.lua)
+				group_overrides = {
+					-- this supports the same val table as vim.api.nvim_set_hl
+					-- use colors from this colorscheme by requiring vscode.colors!
+					Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
+				}
+			})
+
+			vim.cmd.colorscheme 'vscode'
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi 'Comment gui=none'
+
+			local hi = function(name, data) vim.api.nvim_set_hl(0, name, data) end
+
+			local foreground = c.vscBack
+			local grey = c.vscGray
+			-- local grey = c.vscFront
+			-- local grey = c.vscLineNumber
+			-- local yellow = c.vscYellowOrange
+			local yellow = c.vscDarkYellow
+			local blue = c.vscMediumBlue
+			local cyan = c.vscAccentBlue
+			local red = c.vscRed
+			local green = c.vscGreen
+
+			hi('MiniStatuslineModeCommand', {fg = foreground, bg = yellow, bold = true})
+			hi('MiniStatuslineModeInsert',	{fg = foreground, bg = blue, bold = true})
+			hi('MiniStatuslineModeNormal',	{fg = grey, bg = foreground, bold = false})
+			hi('MiniStatuslineModeOther',	{fg = foreground, bg = cyan, bold = true})
+			hi('MiniStatuslineModeReplace', {fg = foreground, bg = red, bold = true})
+			hi('MiniStatuslineModeVisual',	{fg = foreground, bg = green, bold = true})
 		end,
 	},
 
@@ -616,6 +668,7 @@ require('lazy').setup({
 			-- Simple and easy statusline.
 			local statusline = require 'mini.statusline'
 			statusline.setup({use_icons = vim.g.have_nerd_font})
+
 
 			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_location = function()
@@ -684,10 +737,10 @@ require('lazy').setup({
 			"TmuxNavigatePrevious",
 		},
 		keys = {
-			{ "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-			{ "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-			{ "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-			{ "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-h>",	"<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>",	"<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>",	"<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>",	"<cmd><C-U>TmuxNavigateRight<cr>" },
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
@@ -717,9 +770,9 @@ require('lazy').setup({
 	},
 
 	-- {
-	-- 	"windwp/nvim-autopairs",
-	-- 	even = "InsertEnter",
-	-- 	config = true,
+	--	"windwp/nvim-autopairs",
+	--	even = "InsertEnter",
+	--	config = true,
 	-- },
 
 	{

@@ -5,6 +5,11 @@ import = [
 [font]
 size = 10.0
 
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+# family = "Cousine Nerd Font"
+style = "regular"
+
 [window.dimensions]
 columns = 160
 lines = 45
