@@ -100,7 +100,7 @@ vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter", "InsertLeave
 	desc = "Toggle on relative numbers",
 	group = "custom-numbertoggle",
 	callback = function()
-		if vim.opt.number and (vim.fn.mode() ~= 'i') then
+		if vim.opt.number then
 			vim.opt.relativenumber = true
 		end
 	end,
