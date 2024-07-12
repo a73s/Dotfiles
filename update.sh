@@ -21,13 +21,13 @@ function help() {
 	echo "Usage"
 	echo "update.sh [options]"
 	echo "EX:"
-	echo "update.sh -yr		or		update.sh --yes --restart"
+	echo "update.sh -yr or update.sh --yes --restart"
 	echo ""
 	echo "Options:"
 	echo "-h, --help: help"
 	echo "-y, --yes: yes to all promts"
 	echo "-r, --restart: reboot after updating"
-	echo "-s, --shutdown: shutdown after updating"
+	echo "-s, --poweroff: poweroff after updating"
 	exit
 }
 
@@ -46,7 +46,7 @@ function parseSingleLetterFlags() {
 			"r")
 				restart=1
 			;;
-			"s")
+			"p")
 				shutdown=1
 			;;
 			*)
@@ -76,7 +76,7 @@ do
 		"-restart")
 			restart=1
 		;;
-		"-shutdown")
+		"-poweroff")
 			shutdown=1
 		;;
 		*)
