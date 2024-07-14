@@ -89,6 +89,9 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Keybind to delete without overwriting clipboard
 vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
 
+--Keymap to list open buffers
+vim.keymap.set('n', '<leader>l', ":ls<CR>", { desc = 'List Buffers' })
+
 -- [[ Basic Autocommands ]]
 --	See `:help lua-guide-autocommands`
 
