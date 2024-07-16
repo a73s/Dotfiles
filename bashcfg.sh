@@ -8,9 +8,6 @@ function detach() {
 	"$@" &
 }
 
-alias dnf="dnf5"
-
-# alias gdb="gdb --tui"
 alias g="git"
 alias gs="git status"
 alias nv="nvim"
