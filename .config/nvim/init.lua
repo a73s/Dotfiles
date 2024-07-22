@@ -89,9 +89,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Keybind to delete without overwriting clipboard
 vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
 
---Keymap to list open buffers
-vim.keymap.set('n', '<leader>l', ":ls<CR>", { desc = 'List Buffers' })
-
 -- [[ Basic Autocommands ]]
 --	See `:help lua-guide-autocommands`
 
@@ -708,6 +705,9 @@ require('lazy').setup({
 			--		.com/nvim-treesitter/nvim-treesitter-context
 			--		- Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
+		dependencies = {
+			"hiphish/rainbow-delimiters.nvim",
+		},
 	},
 
 	{
@@ -771,12 +771,6 @@ require('lazy').setup({
 		end,
 	},
 
-	-- {
-	--	"windwp/nvim-autopairs",
-	--	even = "InsertEnter",
-	--	config = true,
-	-- },
-
 	{
 		"dstein64/nvim-scrollview",
 		opts = {
@@ -790,6 +784,38 @@ require('lazy').setup({
 		}
 	},
 
+	{
+		"hiphish/rainbow-delimiters.nvim",
+		config = function ()
+			-- This module contains a number of default definitions
+			local rainbow_delimiters = require 'rainbow-delimiters'
+
+			---@type rainbow_delimiters.config
+			vim.g.rainbow_delimiters = {
+				strategy = {
+					[''] = rainbow_delimiters.strategy['global'],
+					vim = rainbow_delimiters.strategy['local'],
+				},
+				query = {
+					[''] = 'rainbow-delimiters',
+					lua = 'rainbow-blocks',
+				},
+				priority = {
+					[''] = 110,
+					lua = 210,
+				},
+				highlight = {
+					'RainbowDelimiterYellow',
+					'RainbowDelimiterRed',
+					'RainbowDelimiterBlue',
+					-- 'RainbowDelimiterViolet',
+					-- 'RainbowDelimiterOrange',
+					-- 'RainbowDelimiterGreen',
+					-- 'RainbowDelimiterCyan',
+				},
+			}
+		end,
+	},
 },
 
 {
