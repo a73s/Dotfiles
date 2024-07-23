@@ -816,6 +816,61 @@ require('lazy').setup({
 			}
 		end,
 	},
+	-- {
+	-- 	"mfussenegger/nvim-dap",
+	-- 	dependencies = {
+	-- 		"rcarriga/nvim-dap-ui",
+	-- 		-- "theHamsta/nvim-dap-virtual-text",
+	-- 		"nvim-neotest/nvim-nio",
+	-- 		"williamboman/mason.nvim",
+	-- 	},
+	--
+	-- 	config = function()
+	-- 		local dap = require("dap")
+	-- 		local ui = require("dapui")
+	--
+	-- 		require("dapui").setup()
+	--
+	-- 		dap.adapters.gdb = {
+	-- 			type = "executable",
+	-- 			command = "gdb",
+	-- 			args = { "-i", "dap" },
+	-- 		}
+	--
+	-- 		-- dap.configurations.cpp = {
+	-- 		-- 	{
+	-- 		-- 		name = "Launch",
+	-- 		-- 		type = "gdb",
+	-- 		-- 		request = "launch",
+	-- 		-- 		-- program = "${workspaceFolder}../build",
+	-- 		-- 		-- program = "${workspaceFolder}/../build/serverMonitor",
+	-- 		-- 		program = function()
+	-- 		-- 			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+	-- 		-- 		end,
+	-- 		-- 		cwd = "${workspaceFolder}",
+	-- 		-- 	},
+	-- 		-- }
+	--
+	-- 		-- vim.keymap.set('n', "<leader>b", function() require("dap.ext.vscode").load_launchjs("./launch.json") end, {desc = "De[b]ug"})
+	-- 		-- vim.keymap.set('n', "<leader>b", , {desc = "De[b]ug"})
+	-- 		-- require("dap.ext.vscode").load_launchjs( path = "./launch.json")
+	-- 		require("dap.ext.vscode").load_launchjs("./launch.json")
+	-- 		-- require("dap.ext.vscode").load_launchjs()
+	--
+	-- 		dap.listeners.before.attach.dapui_config = function()
+	-- 			ui.open()
+	-- 		end
+	-- 		dap.listeners.before.launch.dapui_config = function()
+	-- 			ui.open()
+	-- 		end
+	-- 		dap.listeners.before.event_terminated.dapui_config = function()
+	-- 			ui.close()
+	-- 		end
+	-- 		dap.listeners.before.event_exited.dapui_config = function()
+	-- 			ui.close()
+	-- 		end
+	-- 	end,
+	-- },
 },
 
 {
