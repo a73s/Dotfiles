@@ -705,9 +705,6 @@ require('lazy').setup({
 			--		.com/nvim-treesitter/nvim-treesitter-context
 			--		- Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
-		dependencies = {
-			"hiphish/rainbow-delimiters.nvim",
-		},
 	},
 
 	{
@@ -786,6 +783,9 @@ require('lazy').setup({
 
 	{
 		"hiphish/rainbow-delimiters.nvim",
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter',
+		},
 		config = function ()
 			-- This module contains a number of default definitions
 			local rainbow_delimiters = require 'rainbow-delimiters'
@@ -799,6 +799,7 @@ require('lazy').setup({
 				query = {
 					[''] = 'rainbow-delimiters',
 					lua = 'rainbow-blocks',
+					latex = 'rainbow-blocks'
 				},
 				priority = {
 					[''] = 110,
