@@ -198,11 +198,6 @@ require('lazy').setup({
 				delete = { text = '_' },
 				topdelete = { text = '‾' },
 				changedelete = { text = '~' },
-				-- add			 = { text = '▎' },
-				-- change		 = { text = '▎' },
-				-- delete		 = { text = '_' },
-				-- topdelete	 = { text = '‾' },
-				-- changedelete = { text = '~' },
 			},
 		},
 	},
@@ -609,7 +604,7 @@ require('lazy').setup({
 
 				-- Override colors (see ./lua/vscode/colors.lua)
 				-- color_overrides = {
-				-- 	vscLineNumber = '#FFFFFF',
+				--	vscLineNumber = '#FFFFFF',
 				-- },
 
 				-- Override highlight groups (see ./lua/vscode/theme.lua)
@@ -774,7 +769,6 @@ require('lazy').setup({
 			-- excluded_filetypes = {'nerdtree'},
 			-- current_only = true,
 			base = 'right',
-			-- signs_on_startup = {'diagnostic', 'marks', 'search', 'conflicts'},
 			signs_on_startup = {'diagnostics', 'marks', 'search', 'conflicts'},
 			scrollview_line_limit = 20000,
 			diagnostics_severities = {vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN}
@@ -817,61 +811,154 @@ require('lazy').setup({
 			}
 		end,
 	},
-	-- {
-	-- 	"mfussenegger/nvim-dap",
-	-- 	dependencies = {
-	-- 		"rcarriga/nvim-dap-ui",
-	-- 		-- "theHamsta/nvim-dap-virtual-text",
-	-- 		"nvim-neotest/nvim-nio",
-	-- 		"williamboman/mason.nvim",
-	-- 	},
-	--
-	-- 	config = function()
-	-- 		local dap = require("dap")
-	-- 		local ui = require("dapui")
-	--
-	-- 		require("dapui").setup()
-	--
-	-- 		dap.adapters.gdb = {
-	-- 			type = "executable",
-	-- 			command = "gdb",
-	-- 			args = { "-i", "dap" },
-	-- 		}
-	--
-	-- 		-- dap.configurations.cpp = {
-	-- 		-- 	{
-	-- 		-- 		name = "Launch",
-	-- 		-- 		type = "gdb",
-	-- 		-- 		request = "launch",
-	-- 		-- 		-- program = "${workspaceFolder}../build",
-	-- 		-- 		-- program = "${workspaceFolder}/../build/serverMonitor",
-	-- 		-- 		program = function()
-	-- 		-- 			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-	-- 		-- 		end,
-	-- 		-- 		cwd = "${workspaceFolder}",
-	-- 		-- 	},
-	-- 		-- }
-	--
-	-- 		-- vim.keymap.set('n', "<leader>b", function() require("dap.ext.vscode").load_launchjs("./launch.json") end, {desc = "De[b]ug"})
-	-- 		-- vim.keymap.set('n', "<leader>b", , {desc = "De[b]ug"})
-	-- 		-- require("dap.ext.vscode").load_launchjs( path = "./launch.json")
-	-- 		require("dap.ext.vscode").load_launchjs("./launch.json")
-	-- 		-- require("dap.ext.vscode").load_launchjs()
-	--
-	-- 		dap.listeners.before.attach.dapui_config = function()
-	-- 			ui.open()
-	-- 		end
-	-- 		dap.listeners.before.launch.dapui_config = function()
-	-- 			ui.open()
-	-- 		end
-	-- 		dap.listeners.before.event_terminated.dapui_config = function()
-	-- 			ui.close()
-	-- 		end
-	-- 		dap.listeners.before.event_exited.dapui_config = function()
-	-- 			ui.close()
-	-- 		end
-	-- 	end,
-	-- },
+
+	{
+		"mfussenegger/nvim-dap",
+		dependencies = {
+			"rcarriga/nvim-dap-ui",
+			-- "theHamsta/nvim-dap-virtual-text",
+			"nvim-neotest/nvim-nio",
+			"williamboman/mason.nvim",
+		},
+
+		config = function()
+			local dap = require("dap")
+			local ui = require("dapui")
+
+			ui.setup(
+				{
+					controls = {
+						element = "repl",
+						enabled = true,
+						icons = {
+							disconnect = "",
+							pause = "",
+							play = "",
+							run_last = "",
+							step_back = "",
+							step_into = "",
+							step_out = "",
+							step_over = "",
+							terminate = ""
+						}
+					},
+					element_mappings = {},
+					expand_lines = true,
+					floating = {
+						border = "single",
+						mappings = {
+							close = { "q", "<Esc>" }
+						}
+					},
+					force_buffers = true,
+					icons = {
+						collapsed = "",
+						current_frame = "",
+						expanded = ""
+					},
+					layouts = {
+						{
+							elements = {
+								{
+									id = "scopes",
+									size = 0.5
+								},
+								{
+									id = "stacks",
+									size = 0.2
+								},
+								{
+									id = "watches",
+									size = 0.15
+								},
+								{
+									id = "breakpoints",
+									size = 0.15
+								},
+							},
+							position = "left",
+							size = 50
+						},
+						{
+							elements = {
+								{
+									id = "repl",
+									size = 0.5
+								},
+								{
+									id = "console",
+									size = 0.5
+								}
+							},
+							position = "bottom",
+							size = 20
+						}
+					},
+					mappings = {
+						edit = "e",
+						expand = { "<CR>", "<2-LeftMouse>" },
+						open = "o",
+						remove = "d",
+						repl = "r",
+						toggle = "t"
+					},
+					render = {
+						indent = 1,
+						max_value_lines = 100
+					}
+				}
+			)
+
+
+			-- dap.defaults.fallback.external_terminal = {
+			-- 	command = '/usr/bin/alacritty';
+			-- 	args = {'-e'};
+			-- }
+			-- dap.defaults.fallback.force_external_terminal = true
+
+			-- See
+			-- https://sourceware.org/gdb/current/onlinedocs/gdb.html/Interpreters.html
+			-- https://sourceware.org/gdb/current/onlinedocs/gdb.html/Debugger-Adapter-Protocol.html
+			dap.adapters.gdb = {
+				name = "gdb",
+				type = "executable",
+				command = "gdb",
+				args = { "--interpreter=dap", "--quiet" },
+			}
+
+			dap.adapters.cppdbg = {
+				-- name = "cppdbg",
+				id = "cppdbg",
+				type = "executable",
+				command = "/home/adam/repos/cpptools-linux-x64/extension/debugAdapters/bin/OpenDebugAD7",
+			}
+
+			vim.keymap.set('n', "<F5>", dap.continue)
+			vim.keymap.set('n', "<F6>", ui.toggle, {desc = "Toggle Dapui"})
+			vim.keymap.set('n', "<F7>", dap.toggle_breakpoint)
+			vim.keymap.set('n', "<F8>", dap.terminate)
+
+			vim.keymap.set('n', "<F10>", dap.step_over)
+			vim.keymap.set('n', "<F11>", dap.step_into)
+			vim.keymap.set('n', "<F12>", dap.step_out)
+
+			require("dap.ext.vscode").load_launchjs("./launch.json", {cppdbg = {'c','cpp'}, gdb = {'c','cpp'}})
+			-- require("dap.ext.vscode").load_launchjs("./launch.json", {gdb = {'c', 'cpp'}})
+
+			dap.listeners.before.attach.dapui_config = function()
+				ui.open()
+			end
+			dap.listeners.before.launch.dapui_config = function()
+				ui.open()
+			end
+			dap.listeners.before.event_terminated.dapui_config = function()
+				ui.close()
+			end
+			dap.listeners.before.event_exited.dapui_config = function()
+				ui.close()
+			end
+		end,
+	},
 },
 
 {
