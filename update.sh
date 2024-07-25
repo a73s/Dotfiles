@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 trap ctrl_c INT
 
@@ -62,7 +62,7 @@ restart=0
 shutdown=0
 
 #parse flags
-for flag in $@
+for flag in "$@"
 do
 	subflag=${flag:1:100}
 
