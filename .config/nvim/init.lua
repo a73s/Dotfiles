@@ -821,6 +821,19 @@ require('lazy').setup({
 			"williamboman/mason.nvim",
 		},
 
+		lazy = true,
+
+		keys = {
+			{ "<F5>", function() require("dap").continue() end },
+			{ "<F6>", function() require("dapui").toggle() end, desc = "Toggle Dapui" },
+			{ "<F7>", function() require("dap").toggle_breakpoint() end },
+			{ "<F8>", function() require("dap").terminate() end },
+
+			{ "<F10>", function() require("dap").step_over() end },
+			{ "<F11>", function() require("dap").step_into() end },
+			{ "<F12>", function() require("dap").step_out() end },
+		},
+
 		config = function()
 			local dap = require("dap")
 			local ui = require("dapui")
@@ -933,17 +946,7 @@ require('lazy').setup({
 				command = "/home/adam/repos/cpptools-linux-x64/extension/debugAdapters/bin/OpenDebugAD7",
 			}
 
-			vim.keymap.set('n', "<F5>", dap.continue)
-			vim.keymap.set('n', "<F6>", ui.toggle, {desc = "Toggle Dapui"})
-			vim.keymap.set('n', "<F7>", dap.toggle_breakpoint)
-			vim.keymap.set('n', "<F8>", dap.terminate)
-
-			vim.keymap.set('n', "<F10>", dap.step_over)
-			vim.keymap.set('n', "<F11>", dap.step_into)
-			vim.keymap.set('n', "<F12>", dap.step_out)
-
 			require("dap.ext.vscode").load_launchjs("./launch.json", {cppdbg = {'c','cpp'}, gdb = {'c','cpp'}})
-			-- require("dap.ext.vscode").load_launchjs("./launch.json", {gdb = {'c', 'cpp'}})
 
 			dap.listeners.before.attach.dapui_config = function()
 				ui.open()
