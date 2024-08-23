@@ -970,11 +970,11 @@ require('lazy').setup({
 			)
 
 
-			-- dap.defaults.fallback.external_terminal = {
-			-- 	command = '/usr/bin/alacritty';
-			-- 	args = {'-e'};
-			-- }
-			-- dap.defaults.fallback.force_external_terminal = true
+			dap.defaults.fallback.external_terminal = {
+				command = '/usr/bin/alacritty',
+				args = {'-e'},
+			}
+			dap.defaults.fallback.force_external_terminal = true
 
 			-- See
 			-- https://sourceware.org/gdb/current/onlinedocs/gdb.html/Interpreters.html
@@ -987,7 +987,6 @@ require('lazy').setup({
 			}
 
 			dap.adapters.cppdbg = {
-				-- name = "cppdbg",
 				id = "cppdbg",
 				type = "executable",
 				command = "/home/adam/repos/cpptools-linux-x64/extension/debugAdapters/bin/OpenDebugAD7",
@@ -1033,5 +1032,4 @@ require('lazy').setup({
 	},
 })
 
--- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=4 sw=4
