@@ -28,8 +28,9 @@
     border: none;
     border-radius: 0;
     /* font-family: Dejavu Sans Mono, FontAwesome, Material Icons, sans-serif; */
-    font-family: Agave Nerd Font;
-    font-size: 16px;
+    /* font-family: Agave Nerd Font; */
+    font-family: BitstromWera Nerd Font;
+    font-size: 14px;
     min-height: 0;
     opacity: 1.0;
 
