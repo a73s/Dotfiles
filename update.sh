@@ -88,9 +88,9 @@ done
 echo "Updating system..."
 
 if(($yes)); then
-	sudo dnf5 update -y
+	sudo dnf update -y
 else
-	sudo dnf5 update
+	sudo dnf update
 fi
 if (($?)); then
 	echo "DNF Update Failed, Aborting."
