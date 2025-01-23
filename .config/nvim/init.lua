@@ -842,7 +842,6 @@ require('lazy').setup({
 				query = {
 					[''] = 'rainbow-delimiters',
 					lua = 'rainbow-blocks',
-					latex = 'rainbow-blocks'
 				},
 				priority = {
 					[''] = 110,
