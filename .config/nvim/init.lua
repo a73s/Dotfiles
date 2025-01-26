@@ -89,9 +89,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Keybind to delete without overwriting clipboard
-vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
-
 -- [[ Basic Autocommands ]]
 --	See `:help lua-guide-autocommands`
 
@@ -388,8 +385,6 @@ require('lazy').setup({
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--	For example, in C this would take you to the header.
 					map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-					map('<leader>m', require('mini.map').toggle, 'Toggle Mini.[M]ap')
 
 					-- adds code completion
 
@@ -725,7 +720,8 @@ require('lazy').setup({
 				}
 			)
 
-			-- map.open()
+			-- Mini map keybind
+			vim.keymap.set('n', '<leader>m', require('mini.map').toggle, { desc= 'Toggle Mini.[M]ap' })
 		end,
 	},
 
