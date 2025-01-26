@@ -59,6 +59,7 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 15
+vim.opt.sidescrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --	See `:help vim.keymap.set()`
@@ -211,14 +212,22 @@ require('lazy').setup({
 		require('which-key').setup()
 
 		-- Document existing key chains
-		require('which-key').register {
-			['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-			['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
-			['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-			['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-			['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-			['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-			-- ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+		require('which-key').add {
+			{
+				{ "<leader>c", group = "[C]ode" },
+				{ "<leader>c_", hidden = true },
+				{ "<leader>f", group = "[F]ile" },
+				{ "<leader>f_", hidden = true },
+				{ "<leader>g", group = "[G]it" },
+				{ "<leader>g_", hidden = true },
+				{ "<leader>r", group = "[R]ename" },
+				{ "<leader>r_", hidden = true },
+				{ "<leader>s", group = "[S]earch" },
+				{ "<leader>s_", hidden = true },
+				{ "<leader>w", group = "[W]orkspace" },
+				{ "<leader>w_", hidden = true },
+			}
+
 		}
 	end,
 	},
@@ -379,6 +388,8 @@ require('lazy').setup({
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--	For example, in C this would take you to the header.
 					map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+					map('<leader>m', require('mini.map').toggle, 'Toggle Mini.[M]ap')
 
 					-- adds code completion
 
@@ -625,9 +636,6 @@ require('lazy').setup({
 
 			local foreground = c.vscBack
 			local grey = c.vscGray
-			-- local grey = c.vscFront
-			-- local grey = c.vscLineNumber
-			-- local yellow = c.vscYellowOrange
 			local yellow = c.vscDarkYellow
 			local blue = c.vscMediumBlue
 			local cyan = c.vscAccentBlue
@@ -670,54 +678,54 @@ require('lazy').setup({
 				return '%p%%, %.l:%2L:%.c'
 			end
 
-			-- local map = require("mini.map")
-			-- map.setup(
-			-- 	{
-			-- 		-- Highlight integrations (none by default)
-			-- 		integrations = {
-			-- 			map.gen_integration.builtin_search(),
-			-- 			map.gen_integration.diff(),
-			-- 			map.gen_integration.diff(),
-			-- 			map.gen_integration.diagnostic(),
-			-- 		},
-			--
-			-- 		-- Symbols used to display data
-			-- 		symbols = {
-			-- 			-- Encode symbols. See `:h MiniMap.config` for specification and
-			-- 			-- `:h MiniMap.gen_encode_symbols` for pre-built ones.
-			-- 			-- Default: solid blocks with 3x2 resolution.
-			-- 			encode = nil,
-			--
-			-- 			-- Scrollbar parts for view and line. Use empty string to disable any.
-			-- 			scroll_line = '█',
-			-- 			scroll_view = '┃',
-			-- 		},
-			--
-			-- 		-- Window options
-			-- 		window = {
-			-- 			-- Whether window is focusable in normal way (with `wincmd` or mouse)
-			-- 			focusable = false,
-			--
-			-- 			-- Side to stick ('left' or 'right')
-			-- 			side = 'right',
-			--
-			-- 			-- Whether to show count of multiple integration highlights
-			-- 			show_integration_count = true,
-			--
-			-- 			-- Total width
-			-- 			width = 20,
-			--
-			-- 			-- Value of 'winblend' option
-			-- 			winblend = 100,
-			--
-			-- 			-- Z-index
-			-- 			zindex = 10,
-			-- 		},
-			-- 	}
-			-- )
-			--
-			-- map.open()
+			local map = require("mini.map")
+			map.setup(
+				{
+					-- Highlight integrations (none by default)
+					integrations = {
+						map.gen_integration.builtin_search(),
+						map.gen_integration.diff(),
+						map.gen_integration.diff(),
+						map.gen_integration.diagnostic(),
+					},
 
+					-- Symbols used to display data
+					symbols = {
+						-- Encode symbols. See `:h MiniMap.config` for specification and
+						-- `:h MiniMap.gen_encode_symbols` for pre-built ones.
+						-- Default: solid blocks with 3x2 resolution.
+						encode = map.gen_encode_symbols.dot('4x2'),
+						-- encode = map.gen_encode_symbols.block('3x2')
+
+						-- Scrollbar parts for view and line. Use empty string to disable any.
+						scroll_line = '█',
+						scroll_view = '┃',
+					},
+
+					-- Window options
+					window = {
+						-- Whether window is focusable in normal way (with `wincmd` or mouse)
+						focusable = false,
+
+						-- Side to stick ('left' or 'right')
+						side = 'right',
+
+						-- Whether to show count of multiple integration highlights
+						show_integration_count = true,
+
+						-- Total width
+						width = 20,
+
+						-- Value of 'winblend' option
+						winblend = 50,
+
+						-- Z-index
+						zindex = 10,
+					},
+				}
+			)
+
+			-- map.open()
 		end,
 	},
 
