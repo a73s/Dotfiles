@@ -23,6 +23,9 @@
     // "custom/paddc",
     // "custom/notification",
     // "custom/paddc",
+    "custom/paddc",
+    "battery",
+    "custom/paddc",
     "custom/wifi",
     "custom/paddc",
     "clock#date",
@@ -78,8 +81,8 @@
 
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "<span color='#fbf1c7' >  </span>{volume}%",
-    "format-muted": "<span color='#fbf1c7' >  </span>{volume}%",
+    "format": "<span color='#f5f5f5' >   </span>{volume}%",
+    "format-muted": "<span color='#f5f5f5' >   </span>{volume}%",
     "format-bluetooth": "<span color='#fbf1c7' > 󰂰 </span>{volume}%",
     "format-bluetooth-muted": "<span color='#fbf1c7' > 󰂲 </span>{volume}%",
     "format-source": "{volume}% ",
@@ -100,10 +103,10 @@
       "critical": 20
     },
     "format-icons": [" "," "," "," "," "],
-    "format": "<span color='#8ec07c' > {icon}</span>{capacity}%",
-    "format-critical": "<span color='#cc241d' > {icon}</span>{capacity}%",
-    "format-warning": "<span color='#d8a657' > {icon}</span>{capacity}%",
-    "format-full": "<span color='#8ec07c' > {icon}</span>{capacity}%",
+    "format": "<span color='#8ec07c' > {icon} </span>{capacity}%",
+    "format-critical": "<span color='#cc241d' > {icon} </span>{capacity}%",
+    "format-warning": "<span color='#d8a657' > {icon} </span>{capacity}%",
+    "format-full": "<span color='#8ec07c' > {icon} </span>{capacity}%",
     "format-charging": "<span color='#8ec07c' > 󰂅 </span>{capacity}%",
     "format-charging-warning": "<span color='#d8a657' > 󰢝 </span>{capacity}%",
     "format-charging-critical": "<span color='#cc241d' > 󰢜 </span>{capacity}%",
@@ -113,12 +116,12 @@
   },
 
   "clock#date": {
-    "format": "<span color='#8ec07c' >󰃭 </span>{:%a %d %b}",
+    "format": "<span color='#8ec07c' > </span>{:%a %b %d}",
     "tooltip": false,
   },
 
   "clock#time": {
-    "format": "<span color='#cc241d' >󱑂 </span>{:%I:%M %p}",
+    "format": "<span color='#cc241d' > </span>{:%I:%M %p}",
     "tooltip": false,
     // "tooltip-format": "Standard Time: {:%I:%M %p}",
     "min-length": 8,

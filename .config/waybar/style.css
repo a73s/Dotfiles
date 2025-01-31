@@ -15,8 +15,8 @@
 
 /* the whole window */
 window#waybar {
-  background: #3c3835;
-  color: #fff4d2;
+  background: #262a2a;
+  color: #f5f5f5;
   padding: 0px 5px;
   margin: 0;
   border-radius: 15px;
@@ -81,7 +81,7 @@ window#waybar {
 #custom-rofi {
   /* border: 2px solid #458588; */
   /* border-radius: 5px; */
-  background: #3c3835;
+  background: #262a2a;
   padding: 0 6px;
   margin: 5px 0px;
 }
@@ -95,39 +95,41 @@ window#waybar {
 
 #workspaces button {
   color: #fff4d2;
-  background: #3c3835;
-  /* border: 2px solid #fff4d2; */
+  background: #262a2a;
+  border: 2px solid #262a2a;
   min-width: 25px;
 }
 
 #workspaces button:hover {
-  background: #3c3835;
-  border: 2px solid #b16286;
+  background: #262a2a;
+  border: 2px solid #a0a0a0;
   border-radius: 12px;
 }
 
 #workspaces button.visible {
   border: 2px solid #689d6a;
   border-radius: 12px;
-  background: #3c3835;
+  background: #262a2a;
 }
 
 #workspaces button.visible:hover {
   border: 2px solid #689d6a;
   border-radius: 12px;
-  background: #3c3835;
+  background: #262a2a;
 }
 
 #workspaces button.active {
-  border: 2px solid #689d6a;
+  border: 2px solid #a0a0a0;
   border-radius: 12px;
-  background: #3c3835;
+  background: #262a2a;
+  color: #2596be;
 }
 
 #workspaces button.active:hover {
   border: 2px solid #689d6a;
   border-radius: 12px;
-  background: #3c3835;
+  background: #262a2a;
+  color: #2596be;
 }
 
 #workspaces button.urgent {
@@ -142,7 +144,7 @@ window#waybar {
 
 #window {
   color: #a89884;
-  background: #3c3835;
+  background: #262a2a;
   /* border: 2px solid #d3869b; */
 }
 
@@ -152,7 +154,7 @@ window#waybar {
 
 #tray {
   /* padding: 0 6px; */
-  background: #3c3835;
+  background: #262a2a;
 }
 
 /* ================================ */
@@ -190,7 +192,7 @@ window#waybar {
 /* ================================ */
 #custom-backlight {
   color: #f6c657;
-  background: #3c3835;
+  background: #262a2a;
 }
 
 /* ================================ */
@@ -213,47 +215,47 @@ window#waybar {
   padding: 5px 5px;
   margin: 1px 1px; 
   color: #fbf1c7;
-  background: #3c3835;
+  background: #262a2a;
 }
 
 #pulseaudio.muted {
   color: #ea6962;
-  background: #3c3835;
+  background: #262a2a;
 }
 
 /* ================================ */
 /*            battery               */
 /* ================================ */
 #battery {
-  color: #fbf1c7;
-  background: #3c3835;
+  color: #f5f5f5;
+  background: #262a2a;
 }
 
 #battery.critical {
   color: #cc241d;
-  background: #3c3835;
+  background: #262a2a;
 }
 
 #battery.warning {
   color: #e78a4e;
-  background: #3c3835;
+  background: #262a2a;
 }
 /* ================================ */
 /*            clock                 */
 /* ================================ */
 #clock.time {
-  color: #fbf1c7;
-  background: #3c3835;
+  color: #f5f5f5;
+  background: #262a2a;
 }
 
 #clock.date {
-  color: #fbf1c7;
-  background: #3c3835;
+  color: #f5f5f5;
+  background: #262a2a;
 }
 
 #mpris {
   color: #282828;
-  border: 2px solid #3c3835;
+  border: 2px solid #262a2a;
   border-radius: 21px;
   background: #fbf1c7;
   padding: 5px 5px;
@@ -263,6 +265,6 @@ window#waybar {
 #custom-notification {
   color: #fbf1c7;
   font-size: 14px;
-  background: #3c3835;
+  background: #262a2a;
   padding: 2px 2px;
 }
