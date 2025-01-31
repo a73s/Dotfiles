@@ -104,6 +104,7 @@ window#waybar {
   background: #262a2a;
   border: 2px solid #a0a0a0;
   border-radius: 12px;
+  color: #2596be;
 }
 
 #workspaces button.visible {
@@ -116,6 +117,7 @@ window#waybar {
   border: 2px solid #689d6a;
   border-radius: 12px;
   background: #262a2a;
+  color: #2596be;
 }
 
 #workspaces button.active {
@@ -126,7 +128,7 @@ window#waybar {
 }
 
 #workspaces button.active:hover {
-  border: 2px solid #689d6a;
+  border: 2px solid #2596be;
   border-radius: 12px;
   background: #262a2a;
   color: #2596be;
