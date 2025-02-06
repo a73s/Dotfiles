@@ -256,10 +256,10 @@ window#waybar {
 }
 
 #mpris {
-  color: #282828;
+  color: #f5f5f5;
   border: 2px solid #262a2a;
   border-radius: 21px;
-  background: #fbf1c7;
+  background: #262a2a;
   padding: 5px 5px;
   margin: 1px 1px; 
 }
