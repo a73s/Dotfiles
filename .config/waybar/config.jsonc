@@ -19,13 +19,10 @@
     "pulseaudio",
     "custom/paddc",
     "bluetooth",
-    // "custom/paddc",
-    // "custom/paddc",
     // "custom/notification",
     // "custom/paddc",
-    "custom/paddc",
     "battery",
-    "custom/paddc",
+    "idle_inhibitor",
     "custom/wifi",
     "custom/paddc",
     "clock#date",
@@ -59,7 +56,7 @@
       // "default": "<span color='#cc241d'>󰊠</span>",
     },
     "persistent-workspaces": {
-        "*": 5
+	"*": 5
     }
   },
 
@@ -187,6 +184,14 @@
     "interval": 1,
     "min-length": 1,
     "max-length": 10
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰛊",
+      "deactivated": "󰾫"
+    }
   },
 
   "custom/notification": {
