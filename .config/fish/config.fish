@@ -18,6 +18,10 @@ if status is-interactive
     alias ssh_server="ssh server@71.85.150.185 -p 16976"
     alias school_container="podman pull git-docker.mst.edu/os/container && podman run --interactive --tty --rm --privileged --mount type=bind,source="$(pwd)"/,target=/your_code --workdir=/your_code git-docker.mst.edu/os/container fish"
 
+    function container
+        podman pull $argv[1] && podman run --interactive --tty --rm --privileged --mount type=bind,source="$(pwd)"/,target=/your_code --workdir=/your_code $argv[1]
+    end
+
     alias g="git"
     alias gs="git status"
     alias nv="nvim"
