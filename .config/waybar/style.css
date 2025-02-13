@@ -221,6 +221,8 @@ window#waybar {
 }
 
 #pulseaudio.muted {
+  padding: 5px 5px;
+  margin: 1px 1px; 
   color: #ea6962;
   background: #262a2a;
 }
