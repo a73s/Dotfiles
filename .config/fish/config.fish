@@ -13,6 +13,8 @@ if status is-interactive
         detach celluloid $argv
     end
 
+    set -U fish_greeting ""
+
     alias ssh_server="ssh server@71.85.150.185 -p 16976"
 
     alias g="git"
