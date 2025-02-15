@@ -34,5 +34,6 @@ if status is-interactive
     alias list="ls -Al"
 
     alias copygithub="cat $HOME/Documents/Random/github-key.txt | wl-copy"
+    alias copygitlab="cat $HOME/Documents/School/mst\ gitlab.txt | wl-copy"
     alias proj="cd $HOME/Documents/Random/Projects"
 end
