@@ -22,7 +22,11 @@ if status is-interactive
     end
 
     function container
-        podman pull $argv[1] && podman run --network=podman -it --rm --privileged --mount type=bind,source="$(pwd)"/,target=/your_code --workdir=/your_code $argv[1]
+        podman pull $argv[1] && podman run --network=podman -it --rm --privileged --mount type=bind,source="$(pwd)"/,target=/your_code --workdir=/your_code $argv
+    end
+
+    function perm_container
+        podman pull $argv[1] && podman run --network=podman -it --privileged --mount type=bind,source="$(pwd)"/,target=/your_code --workdir=/your_code $argv
     end
 
     alias g="git"
