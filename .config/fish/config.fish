@@ -1,7 +1,7 @@
 if status is-interactive
 
     function detach;
-        command $argv &; disown
+        command $argv & disown
     end
     function image;
         detach loupe $argv
