@@ -18,11 +18,11 @@ if status is-interactive
     alias ssh_server="ssh server@71.85.150.185 -p 16976"
 
     function school_container
-        podman pull git-docker.mst.edu/os/container && podman run --network=podman -it --rm --privileged --mount type=bind,source="$(pwd)"/,target=/host_files --workdir=/host_files git-docker.mst.edu/os/container fish
+        podman run --network=podman -it --rm --privileged --mount type=bind,source="$(pwd)"/,target=/host_files --workdir=/host_files localhost/school_custom fish
     end
 
     function container
-        podman pull $argv[1] && podman run --network=podman -it --rm --privileged --mount type=bind,source="$(pwd)"/,target=/host_files --workdir=/host_files $argv
+        podman run --network=podman -it --rm --privileged --mount type=bind,source="$(pwd)"/,target=/host_files --workdir=/host_files $argv
     end
 
     function perm_container

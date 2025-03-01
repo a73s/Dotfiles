@@ -1,0 +1,7 @@
+FROM git-docker.mst.edu/os/container
+
+# Install dotfiles
+RUN cd root;git clone https://github.com/a73s/Dotfiles;mv Dotfiles/.git/ .;rm -rf Dotfiles;git stash;git stash drop
+RUN rm -rf /root/.local/share
+RUN pip install pynvim wfdb pandas numpy
+RUN dnf install -y luarocks
