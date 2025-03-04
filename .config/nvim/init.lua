@@ -882,14 +882,14 @@ require('lazy').setup({
 		lazy = true,
 
 		keys = {
-			{ "<F5>", function() require("dap").continue() end },
+			{ "<F5>", function() require("dap").continue() end, desc = "Debugger Continue"},
 			{ "<F6>", function() require("dapui").toggle() end, desc = "Toggle Dapui" },
-			{ "<F7>", function() require("dap").toggle_breakpoint() end },
-			{ "<F8>", function() require("dap").terminate() end },
+			{ "<F7>", function() require("dap").toggle_breakpoint() end, desc = "Debugger Breakpoint"},
+			{ "<F8>", function() require("dap").terminate() end, desc = "Debugger "},
 
-			{ "<F10>", function() require("dap").step_over() end },
-			{ "<F11>", function() require("dap").step_into() end },
-			{ "<F12>", function() require("dap").step_out() end },
+			{ "<F10>", function() require("dap").step_over() end, desc = "Debugger Step Over"},
+			{ "<F11>", function() require("dap").step_into() end, desc = "Debugger Step Into"},
+			{ "<F12>", function() require("dap").step_out() end, desc = "Debugger Step Out"},
 		},
 
 		config = function()
