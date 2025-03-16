@@ -36,7 +36,7 @@ if status is-interactive
     alias ccat="highlight --out-format=ansi"
     alias ls="ls -h --color=auto --group-directories-first"
     alias list="ls -Al"
-    alias sysupdate="systemd-inhibit --what=handle-lid-switch --who='update script' --why='Prevent sleep while running update' --mode=block $HOME/update.sh"
+    alias sysupdate="systemd-inhibit --what='handle-lid-switch:sleep' --who='update script' --why='Prevent sleep while running update' --mode=block $HOME/update.sh"
 
     alias copygithub="cat $HOME/Documents/Random/github-key.txt | wl-copy"
     alias copygitlab="cat $HOME/Documents/School/mst\ gitlab.txt | wl-copy"
