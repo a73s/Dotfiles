@@ -65,42 +65,6 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Toggle relative numbers on window chage
--- vim.api.nvim_create_augroup("custom-numbertoggle", {clear = true})
--- vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'WinEnter' }, {
---   desc = 'Toggle on relative numbers',
---   group = 'custom-numbertoggle',
---   callback = function()
---     if vim.opt.number then
---       vim.opt.relativenumber = true
---     end
---   end,
--- })
--- vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'WinLeave' }, {
---   desc = 'Toggle off relative numbers',
---   group = 'custom-numbertoggle',
---   callback = function()
---     if vim.opt.number then
---       vim.opt.relativenumber = false
---     end
---   end,
--- })
-
--- disable extending single line comments when hitting enter
--- vim.api.nvim_create_autocmd('BufEnter', {
---
---   callback = function()
---     vim.opt.formatoptions:remove { 'c', 'r', 'o' }
---   end,
---   group = vim.api.nvim_create_augroup('general-custom-autocmd', { clear = true }),
---   desc = 'Disable New Line Comment',
--- })
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -121,43 +85,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins you can run
---    :Lazy update
---
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
-  -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
-  --
-  -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
-  --
-
-  -- Alternatively, use `config = function() ... end` for full control over the configuration.
-  -- If you prefer to call `setup` explicitly, use:
-  --    {
-  --        'lewis6991/gitsigns.nvim',
-  --        config = function()
-  --            require('gitsigns').setup({
-  --                -- Your gitsigns configuration here
-  --            })
-  --        end,
-  --    }
-  --
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`.
-  --
-  -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     keys = {
@@ -233,6 +164,7 @@ require('lazy').setup({
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
+        { '<leader>h', group = '[H]arpoon', mode = { 'n' } },
       },
     },
   },
@@ -269,37 +201,7 @@ require('lazy').setup({
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
-      -- Telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! It's more than just a "file finder", it can search
-      -- many different aspects of Neovim, your workspace, LSP, and more!
-      --
-      -- The easiest way to use Telescope, is to start by doing something like:
-      --  :Telescope help_tags
-      --
-      -- After running this command, a window will open up and you're able to
-      -- type in the prompt window. You'll see a list of `help_tags` options and
-      -- a corresponding preview of the help.
-      --
-      -- Two important keymaps to use while in Telescope are:
-      --  - Insert mode: <c-/>
-      --  - Normal mode: ?
-      --
-      -- This opens a window that shows you all of the keymaps for the current
-      -- Telescope picker. This is really useful to discover what Telescope can
-      -- do as well as how to actually do it!
-
-      -- [[ Configure Telescope ]]
-      -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
-        -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -539,8 +441,6 @@ require('lazy').setup({
         cmake = {},
         pyright = {},
 
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -744,30 +644,9 @@ require('lazy').setup({
       local c = require('vscode.colors').get_colors()
       require('vscode').setup(
       {
-        -- Alternatively set style in setup
-        -- style = 'light'
-
-        -- Enable transparent background
-        -- transparent = true,
-
-        -- Enable italic comment
         italic_comments = true,
-
-        -- Underline `@markup.link.*` variants
         underline_links = true,
-
-        -- Disable nvim-tree background color
-        -- disable_nvimtree_bg = true,
-
-        -- Override colors (see ./lua/vscode/colors.lua)
-        -- color_overrides = {
-        --  vscLineNumber = '#FFFFFF',
-        -- },
-
-        -- Override highlight groups (see ./lua/vscode/theme.lua)
         group_overrides = {
-          -- this supports the same val table as vim.api.nvim_set_hl
-          -- use colors from this colorscheme by requiring vscode.colors!
           Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
         }
       })
@@ -795,59 +674,19 @@ require('lazy').setup({
     end,
   },
 
-  -- { -- You can easily change to a different colorscheme.
-  --   -- Change the name of the colorscheme plugin below, and then
-  --   -- change the command in the config to whatever the name of that colorscheme is.
-  --   --
-  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  --   'folke/tokyonight.nvim',
-  --   priority = 1000, -- Make sure to load this before all the other start plugins.
-  --   config = function()
-  --     ---@diagnostic disable-next-line: missing-fields
-  --     require('tokyonight').setup {
-  --       styles = {
-  --         comments = { italic = false }, -- Disable italics in comments
-  --       },
-  --     }
-  --
-  --     -- Load the colorscheme here.
-  --     -- Like many other themes, this one has different styles, and you could load
-  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  --     vim.cmd.colorscheme 'tokyonight-night'
-  --   end,
-  -- },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
-      -- Better Around/Inside textobjects
-      --
-      -- Examples:
-      --  - va)  - [V]isually select [A]round [)]paren
-      --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-      --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
 
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
+      require('mini.ai').setup { n_lines = 500 }
       require('mini.surround').setup()
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
       statusline.setup { use_icons = vim.g.have_nerd_font }
 
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%p%%, %.l:%2L:%.c'
@@ -867,35 +706,17 @@ require('lazy').setup({
 
           -- Symbols used to display data
           symbols = {
-            -- Encode symbols. See `:h MiniMap.config` for specification and
-            -- `:h MiniMap.gen_encode_symbols` for pre-built ones.
-            -- Default: solid blocks with 3x2 resolution.
             encode = map.gen_encode_symbols.dot('4x2'),
-            -- encode = map.gen_encode_symbols.block('3x2')
-
-            -- Scrollbar parts for view and line. Use empty string to disable any.
             scroll_line = '█',
             scroll_view = '┃',
           },
 
-          -- Window options
           window = {
-            -- Whether window is focusable in normal way (with `wincmd` or mouse)
             focusable = false,
-
-            -- Side to stick ('left' or 'right')
             side = 'right',
-
-            -- Whether to show count of multiple integration highlights
             show_integration_count = true,
-
-            -- Total width
             width = 20,
-
-            -- Value of 'winblend' option
             winblend = 50,
-
-            -- Z-index
             zindex = 10,
           },
         }
@@ -932,33 +753,6 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
-
-  -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  -- place them in the correct locations.
-
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
-  --
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
-  --
-  -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
-  -- Or use telescope!
-  -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
-  -- you can continue same window with `<space>sr` which resumes last telescope search
 
   {
     'mbbill/undotree',
@@ -1007,17 +801,16 @@ require('lazy').setup({
       local harpoon = require('harpoon')
       harpoon:setup()
 
-      vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
-        { desc = "[H]arpoon Menu" })
-      vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon [A]dd" })
+      vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "[H]arpoon Menu" })
+      vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = "[H]arpoon [A]dd" })
       vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon Select [1]" })
       vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon Select [2]" })
       vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, { desc = "Harpoon Select [3]" })
       vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, { desc = "Harpoon Select [4]" })
 
       -- Toggle previous & next buffers stored within Harpoon list
-      vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end, { desc = "[H]arpoon [P]rev" })
-      vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, { desc = "[H]arpoon [N]ext" })
+      -- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end, { desc = "[H]arpoon [P]rev" })
+      -- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, { desc = "[H]arpoon [N]ext" })
     end,
   },
 
@@ -1068,6 +861,84 @@ require('lazy').setup({
       }
     end,
   },
+--   {
+--     "yetone/avante.nvim",
+--     event = "VeryLazy",
+--     version = false, -- Never set this value to "*"! Never!
+--     opts = {
+--       -- add any opts here
+--       -- for example
+--       provider = "gemini",
+--       openai = {
+--         endpoint = "https://api.openai.com/v1",
+--         model = "gpt-o3-mini", -- your desired model (or use gpt-4o, etc.)
+--         timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+--         temperature = 0,
+--         max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+--         reasoning_effort = "high", -- low|medium|high, only used for reasoning models
+--       },
+--       gemini = {
+--         endpoint = "https://generativelanguage.googleapis.com/v1beta/models/",
+--         model = "gemini-2.5-pro-exp-03-25",
+--         timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+--         temperature = 1,
+--         max_tokens = 10000, -- Increase this to include reasoning tokens (for reasoning models)
+--         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+--       },
+--
+--       -- mappings = {
+--       --   ask = "<leader>aa",
+--       --   refresh = "<leader>ar",
+--       -- },
+--     },
+--
+--     -- keys = {
+--     --   { '<leader>aa', '<cmd>AvanteAsk<cr>', desc = '[A]vante [A]sk' },
+--     --   { '<leader>ar', '<cmd>AvanteRefresh<cr>', desc = '[A]vante [R]efresh' },
+--     -- },
+--
+--     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+--     build = "make",
+--     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+--     dependencies = {
+--       "nvim-treesitter/nvim-treesitter",
+--       "stevearc/dressing.nvim",
+--       "nvim-lua/plenary.nvim",
+--       "MunifTanjim/nui.nvim",
+--       --- The below dependencies are optional,
+--       "echasnovski/mini.pick", -- for file_selector provider mini.pick
+--       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+--       "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+--       "ibhagwan/fzf-lua", -- for file_selector provider fzf
+--       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+--       "zbirenbaum/copilot.lua", -- for providers='copilot'
+--       -- {
+--       --   -- support for image pasting
+--       --   "HakonHarnes/img-clip.nvim",
+--       --   event = "VeryLazy",
+--       --   opts = {
+--       --     -- recommended settings
+--       --     default = {
+--       --       embed_image_as_base64 = false,
+--       --       prompt_for_file_name = false,
+--       --       drag_and_drop = {
+--       --         insert_mode = true,
+--       --       },
+--       --       -- required for Windows users
+--       --       use_absolute_path = true,
+--       --     },
+--       --   },
+--       -- },
+--       {
+--         -- Make sure to set this up properly if you have lazy=true
+--         'MeanderingProgrammer/render-markdown.nvim',
+--         opts = {
+--           file_types = { "markdown", "Avante" },
+--         },
+--         ft = { "markdown", "Avante" },
+--       },
+--     },
+-- }
 },
 
 {
