@@ -481,6 +481,7 @@ require('lazy').setup({
           end,
         },
       }
+
     end,
   },
 
@@ -743,7 +744,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = {'sql', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = {'yaml', 'sql', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -872,43 +873,67 @@ require('lazy').setup({
   },
 
   {
-    "frankroeder/parrot.nvim",
-    dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim' },
-    -- optionally include "folke/noice.nvim" or "rcarriga/nvim-notify" for beautiful notifications
-    config = function()
-      require("parrot").setup {
-        providers = {
-          gemini = {
-            api_key = os.getenv "GEMINI_API_KEY",
-          },
-          custom = {
-            style = "openai",
-            api_key = os.getenv "GEMINI_API_KEY",
-            -- OPTIONAL: Alternative methods to retrieve API key
-            -- Using GPG for decryption:
-            -- api_key = { "gpg", "--decrypt", vim.fn.expand("$HOME") .. "/anthropic_api_key.txt.gpg" },
-            -- Using macOS Keychain:
-            -- api_key = { "/usr/bin/security", "find-generic-password", "-s anthropic-api-key", "-w" },
-            models = {
-              "gemini-2.0-flash",
-              "gemini-2.5-pro-exp-03-25",
-            },
-            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/",
-            -- topic_prompt = "You only respond with 3 to 4 words to summarize the past conversation.",
-            -- usually a cheap and fast model to generate the chat topic based on
-            -- the whole chat history
-            topic = {
-              model = "gemini-2.0-flash",
-              params = { max_tokens = 32 },
-            },
-            -- default parameters for the actual model
-            -- params = {
-            -- },
-          },
+    "olimorris/codecompanion.nvim",
+    -- config = true,
+    -- config = function(opts)
+    --   require("codecompanion").setup(opts)
+    -- end,
+
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      strategies = {
+        chat = {
+          adapter = "gemini"
         },
-      }
-    end,
-  }
+        inline = {
+          adapter = "gemini"
+        },
+        cmd = {
+          adapter = "gemini_fast"
+        },
+      },
+      adapters = {
+        gemini = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            env = {
+              api_key = os.getenv("GEMINI_API_KEY"),
+              model = "gemini-2.5-pro-exp-03-25",
+            },
+          })
+        end,
+        gemini_fast = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            env = {
+              api_key = os.getenv("GEMINI_API_KEY"),
+              model = "gemini-2.0-flash",
+            },
+          })
+        end,
+      },
+    }
+  },
+
+  -- {
+  --   "frankroeder/parrot.nvim",
+  --   dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim' },
+  --   -- optionally include "folke/noice.nvim" or "rcarriga/nvim-notify" for beautiful notifications
+  --   config = function()
+  --     require("parrot").setup {
+  --       providers = {
+  --         gemini = {
+  --           api_key = os.getenv "GEMINI_API_KEY",
+  --           models = {
+  --             "gemini-2.0-flash",
+  --             "gemini-2.5-pro-exp-03-25",
+  --           },
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- }
 },
 
 {
