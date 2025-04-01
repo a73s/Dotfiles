@@ -100,6 +100,7 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
+    event = 'VimEnter',
     keys = {
       { '<leader>gd', '<cmd>Gitsigns diffthis<CR><C-w><C-h>', desc = '[G]it [D]iff' },
       { '<leader>gn', '<cmd>Gitsigns nav_hunk next<CR>', desc = '[G]it, [N]ext Hunk' },
