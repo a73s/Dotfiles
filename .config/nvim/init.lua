@@ -858,27 +858,25 @@ require('lazy').setup({
 
   {
     "olimorris/codecompanion.nvim",
-    -- config = true,
-    -- config = function(opts)
-    --   require("codecompanion").setup(opts)
-    -- end,
 
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
+
     opts = {
       strategies = {
         chat = {
-          adapter = "gemini"
+          adapter = "gemini",
         },
         inline = {
-          adapter = "gemini"
+          adapter = "gemini",
         },
         cmd = {
-          adapter = "gemini_fast"
+          adapter = "gemini_fast",
         },
       },
+
       adapters = {
         gemini = function()
           return require("codecompanion.adapters").extend("gemini", {
@@ -897,27 +895,59 @@ require('lazy').setup({
           })
         end,
       },
-    }
-  },
 
-  -- {
-  --   "frankroeder/parrot.nvim",
-  --   dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim' },
-  --   -- optionally include "folke/noice.nvim" or "rcarriga/nvim-notify" for beautiful notifications
-  --   config = function()
-  --     require("parrot").setup {
-  --       providers = {
-  --         gemini = {
-  --           api_key = os.getenv "GEMINI_API_KEY",
-  --           models = {
-  --             "gemini-2.0-flash",
-  --             "gemini-2.5-pro-exp-03-25",
-  --           },
-  --         },
-  --       },
-  --     }
-  --   end,
-  -- }
+      prompt_library = {
+        ["Document Function"] = {
+          strategy = "inline",
+          description = "Document A Function",
+          opts = {
+            index = 1,
+            is_slash_cmd = false,
+            auto_submit = false,
+            short_name = "docs",
+          },
+          prompts = {
+            {
+              role = "user",
+              content = "I'm writing the documentation a function in my code. Can you help me write it? Here is the function I would like you to write documentation for. Please do not change the function. Please insert documentation before the function.",
+            },
+          },
+        },
+
+        ["Improve"] = {
+          strategy = "chat",
+          description = "Improve Code",
+          opts = {
+            short_name = "expert",
+            auto_submit = false,
+            stop_context_insertion = true,
+            -- user_prompt = true,
+          },
+
+          prompts = {
+            {
+              role = "system",
+              content = function(context)
+                return "I want you to act as a senior "
+                  .. context.filetype
+                  .. " developer. I will ask you specific questions and I want you to return concise explanations and codeblock examples."
+              end,
+            },
+            {
+              role = "user",
+              content = function(context)
+                local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+                return "I have the following code:\n\n```" .. context.filetype .. "\n" .. text .. "\n```\n\nHow can this be improved?"
+              end,
+              opts = {
+                contains_code = true,
+              }
+            },
+          },
+        },
+      },
+    },
+  },
 },
 
 {
