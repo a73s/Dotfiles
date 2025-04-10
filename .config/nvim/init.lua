@@ -751,8 +751,8 @@ require('lazy').setup({
     },
   },
 
-  require('lua.basic_plugins'),
-  require('lua.ai'),
+  require('basic_plugins'),
+  require('ai'),
 },
 
 {
