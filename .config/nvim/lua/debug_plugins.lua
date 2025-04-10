@@ -105,7 +105,7 @@ return{
           render = {
             indent = 1,
             max_value_lines = 100
-          }
+          },
         }
       )
 
