@@ -753,6 +753,7 @@ require('lazy').setup({
 
   require('basic_plugins'),
   require('ai'),
+  require('debug'),
 },
 
 {
