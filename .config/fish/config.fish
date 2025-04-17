@@ -3,14 +3,8 @@ if status is-interactive
     function detach;
         command $argv &>/dev/null & disown
     end
-    function image;
-        detach loupe $argv
-    end
-    function pdf;
-        detach evince $argv
-    end
-    function video;
-        detach celluloid $argv
+    function op;
+        detach open $argv
     end
 
     set -U fish_greeting ""
