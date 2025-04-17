@@ -26,7 +26,8 @@ return{
         gemini = function()
           return require("codecompanion.adapters").extend("gemini", {
             env = {
-              api_key = os.getenv("GEMINI_API_KEY"),
+              -- api_key = os.getenv("GEMINI_API_KEY"),
+              api_key = io.popen("secret-tool lookup xdg:schema GEMINI_API_KEY"):read(),
               model = "gemini-2.5-pro-exp-03-25",
             },
           })
@@ -34,7 +35,8 @@ return{
         gemini_fast = function()
           return require("codecompanion.adapters").extend("gemini", {
             env = {
-              api_key = os.getenv("GEMINI_API_KEY"),
+              -- api_key = os.getenv("GEMINI_API_KEY"),
+              api_key = io.popen("secret-tool lookup xdg:schema GEMINI_API_KEY"):read(),
               model = "gemini-2.0-flash",
             },
           })
