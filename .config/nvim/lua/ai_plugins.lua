@@ -6,7 +6,7 @@ return{
       "nvim-treesitter/nvim-treesitter",
     },
     keys = {
-      { '<leader>aa', '<cmd>CodeCompanionActions<CR>', desc = '[A]I, [A]ctions' },
+      { '<leader>aa', '<cmd>CodeCompanionActions<CR>', desc = '[A]I, [A]ctions', mode = {'v', 'n'}},
       { '<leader>ac', '<cmd>CodeCompanionChat<CR>', desc = '[A]I, [C]hat' },
     },
     opts = {
