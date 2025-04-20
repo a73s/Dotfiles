@@ -5,3 +5,4 @@ RUN cd root;git clone https://github.com/a73s/Dotfiles;mv Dotfiles/.git/ .;rm -r
 RUN rm -rf /root/.local/share
 RUN pip install pynvim wfdb pandas numpy
 RUN dnf install -y luarocks
+RUN nvim --headless& sleep 120;kill %1
