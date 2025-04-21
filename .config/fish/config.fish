@@ -3,7 +3,7 @@ if status is-interactive
     function detach;
         command $argv &>/dev/null & disown
     end
-    function dopen;
+    function op;
         detach open $argv
     end
 
