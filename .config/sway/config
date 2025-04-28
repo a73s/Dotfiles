@@ -5,37 +5,40 @@ default_border pixel 3
 default_border normal
 
 mouse_warping container
+exec = hypridle
+exec = swaybg --image $wallpaper --mode fill
+exec = waybar
+exec = mako --default-timeout 10000
+exec = sleep 1 && gnome-keyring-daemon --start --components=secrets
+exec = /usr/libexec/xfce-polkit
+exec = gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+exec = gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+exec = gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-exec sleep 1 && nextcloud
-exec sleep 1 && /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=keepassxc --file-forwarding org.keepassxc.KeePassXC @@ %f @@ 
-#exec sleep 1 && dnfdragora-updater
+exec = sleep 1 && nm-applet --indicator
+exec = sleep 1 && blueman-applet
+exec = sleep 3 && nextcloud
+exec = sleep 3 && /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=keepassxc --file-forwarding org.keepassxc.KeePassXC @@ %f @@
 
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
+set $terminal alacritty
+set $fileManager nautilus --new-window
+set $menu wofi | xargs swaymsg exec --
+set $wallpaper "/usr/share/backgrounds/gnome/adwaita-d.jpg"
+set $locker = pidof hyprlock || hyprlock & sleep 1 && hyprctl dispatch dpms off
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
 
-# Your preferred terminal emulator
-set $term alacritty
-
-set $filemanager nautilus -w
-
-# Application launcher
-# set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu wofi | xargs swaymsg exec --
 
 ### Output configuration
 # walpaper used for background and lockscreen
-set $wallpaper '/usr/share/backgrounds/custom/pexels-rodrigo-souza-1275988-2531709.jpg'
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $wallpaper fill
-set $output-primary DP-1
+set $output-primary DP-3
 # set $output-secondary DP-2
 
 
@@ -44,7 +47,7 @@ set $output-primary DP-1
 output DP-3 {
     resolution 3840x2160@143.999Hz 
     position 1,0 
-    scale 1.33
+    scale 1.50
     adaptive_sync on
 }
 
@@ -73,8 +76,18 @@ exec sway-audio-idle-inhibit
 input * {
     
     accel_profile flat
-    middle_emulation diabled
-    pointer_accel -0.5
+    middle_emulation disabled
+    pointer_accel 0.5
+    natural_scroll enabled
+
+}
+input "1267:12632:ELAN050A:00_04F3:3158_Touchpad" {
+
+    accel_profile flat
+    middle_emulation disabled
+    pointer_accel 0.5
+    natural_scroll enabled
+    scroll_factor 0.2
 }
 # keyboards
 input * {
@@ -104,7 +117,7 @@ bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $terminal
 
     bindsym $mod+Backslash exec $filemanager
 
@@ -129,9 +142,9 @@ bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Mod1+Delete exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
-# Moving around:
+# Moving around
 #
     # Move your focus around
     bindsym $mod+$left focus left
