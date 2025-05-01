@@ -7,7 +7,7 @@ default_border normal
 mouse_warping container
 exec = hypridle
 exec = swaybg --image $wallpaper --mode fill
-exec = waybar
+exec = waybar -c ~/.config/waybar/swayconfig.jsonc
 exec = mako --default-timeout 10000
 exec = sleep 1 && gnome-keyring-daemon --start --components=secrets
 exec = /usr/libexec/xfce-polkit
