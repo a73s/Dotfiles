@@ -82,6 +82,26 @@ vim.api.nvim_create_autocmd('BufEnter', {
   desc = "Disable New Line Comment",
 })
 
+vim.api.nvim_create_augroup("custom-numbertoggle", {clear = true})
+
+vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter"}, {
+	desc = "Toggle on relative numbers",
+	group = "custom-numbertoggle",
+	callback = function()
+		if vim.opt.number then
+			vim.opt.relativenumber = true
+		end
+	end,
+})
+vim.api.nvim_create_autocmd({"BufLeave", "FocusLost", "WinLeave"}, {
+	desc = "Toggle off relative numbers",
+	group = "custom-numbertoggle",
+	callback = function()
+		if vim.opt.number then
+			vim.opt.relativenumber = false
+		end
+	end,
+})
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
