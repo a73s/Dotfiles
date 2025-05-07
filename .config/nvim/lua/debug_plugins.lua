@@ -129,7 +129,7 @@ return{
       dap.adapters.cppdbg = {
         id = "cppdbg",
         type = "executable",
-        command = "/home/adam/repos/cpptools-linux-x64/extension/debugAdapters/bin/OpenDebugAD7",
+        command = "OpenDebugAD7",
       }
 
       require("dap.ext.vscode").load_launchjs("./launch.json", {cppdbg = {'c','cpp'}, gdb = {'c','cpp'}})

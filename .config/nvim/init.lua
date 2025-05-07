@@ -470,6 +470,7 @@ require('lazy').setup({
         },
         cmake = {},
         pyright = {},
+        cpptools = {},
 
         lua_ls = {
           -- cmd = {...},
