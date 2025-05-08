@@ -12,6 +12,9 @@ if status is-interactive
     function video;
         detach celluloid $argv
     end
+    function fm;
+        detach nautilus -w .
+    end
 
     set -U fish_greeting ""
 
