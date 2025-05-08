@@ -85,22 +85,22 @@ vim.api.nvim_create_autocmd('BufEnter', {
 vim.api.nvim_create_augroup("custom-numbertoggle", {clear = true})
 
 vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter"}, {
-	desc = "Toggle on relative numbers",
-	group = "custom-numbertoggle",
-	callback = function()
-		if vim.opt.number then
-			vim.opt.relativenumber = true
-		end
-	end,
+  desc = "Toggle on relative numbers",
+  group = "custom-numbertoggle",
+  callback = function()
+    if vim.opt.number then
+            vim.opt.relativenumber = true
+    end
+  end,
 })
 vim.api.nvim_create_autocmd({"BufLeave", "FocusLost", "WinLeave"}, {
-	desc = "Toggle off relative numbers",
-	group = "custom-numbertoggle",
-	callback = function()
-		if vim.opt.number then
-			vim.opt.relativenumber = false
-		end
-	end,
+  desc = "Toggle off relative numbers",
+  group = "custom-numbertoggle",
+  callback = function()
+    if vim.opt.number then
+            vim.opt.relativenumber = false
+    end
+  end,
 })
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -295,6 +295,7 @@ require('lazy').setup({
       },
     },
   },
+
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
@@ -716,39 +717,6 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%p%%, %.l:%2L:%.c'
       end
-
-
-      local map = require("mini.map")
-      map.setup(
-        {
-          -- Highlight integrations (none by default)
-          integrations = {
-            map.gen_integration.builtin_search(),
-            map.gen_integration.diff(),
-            map.gen_integration.diff(),
-            map.gen_integration.diagnostic(),
-          },
-
-          -- Symbols used to display data
-          symbols = {
-            encode = map.gen_encode_symbols.dot('4x2'),
-            scroll_line = '█',
-            scroll_view = '┃',
-          },
-
-          window = {
-            focusable = false,
-            side = 'right',
-            show_integration_count = true,
-            width = 20,
-            winblend = 50,
-            zindex = 10,
-          },
-        }
-      )
-
-      -- Mini map keybind
-      vim.keymap.set('n', '<leader>m', require('mini.map').toggle, { desc= 'Toggle Mini.[M]ap' })
 
     end,
   },
