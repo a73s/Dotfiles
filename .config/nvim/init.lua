@@ -129,6 +129,7 @@ require('lazy').setup({
       { '<leader>gl', '<cmd>Gitsigns nav_hunk last<CR>', desc = '[G]it, [L]ast Hunk' },
       { '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>', desc = '[G]it, [R]eset Hunk' },
       { '<leader>gb', '<cmd>Gitsigns blame<CR>', desc = '[G]it, [B]lame' },
+      { '<leader>gs', '<cmd>Gitsigns stage_hunk<CR>', desc = '[G]it, [S]tage Hunk' },
     },
     opts = {
       signs = {
