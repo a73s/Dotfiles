@@ -468,8 +468,8 @@ require('lazy').setup({
             '-header-insertion=never',
           },
         },
-        cmake = {},
-        pyright = {},
+        --cmake = {},
+        --pyright = {},
         cpptools = {},
 
         lua_ls = {
