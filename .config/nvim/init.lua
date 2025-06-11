@@ -122,7 +122,7 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     event = 'VimEnter',
     keys = {
-      { '<leader>gd', '<cmd>Gitsigns diffthis<CR><C-w><C-h>', desc = '[G]it [D]iff' },
+      { '<leader>gd', '<cmd>Gitsigns diffthis<CR>', desc = '[G]it [D]iff' },
       { '<leader>gn', '<cmd>Gitsigns nav_hunk next<CR>', desc = '[G]it, [N]ext Hunk' },
       { '<leader>gp', '<cmd>Gitsigns nav_hunk prev<CR>', desc = '[G]it, [P]revious Hunk' },
       { '<leader>gf', '<cmd>Gitsigns nav_hunk first<CR>', desc = '[G]it, [F]irst Hunk' },
@@ -130,6 +130,7 @@ require('lazy').setup({
       { '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>', desc = '[G]it, [R]eset Hunk' },
       { '<leader>gb', '<cmd>Gitsigns blame<CR>', desc = '[G]it, [B]lame' },
       { '<leader>gs', '<cmd>Gitsigns stage_hunk<CR>', desc = '[G]it, [S]tage Hunk' },
+      { '<leader>gu', '<cmd>Gitsigns undo_stage_hunk<CR>', desc = '[G]it, [U]nto Stage Hunk' },
     },
     opts = {
       signs = {
@@ -194,7 +195,7 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
+        { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
         { '<leader>h', group = '[H]arpoon', mode = { 'n' } },
         { '<leader>a', group = '[A]I', mode = { 'n', 'v' } },
       },
@@ -367,10 +368,6 @@ require('lazy').setup({
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
           map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
-
-          -- Opens a popup that displays documentation about the word under your cursor
-          --  See `:help K` for why this keymap.
-          map('<C-K>', vim.lsp.buf.hover, 'Hover Documentation')
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
