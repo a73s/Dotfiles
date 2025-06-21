@@ -38,9 +38,6 @@ vim.opt.scrolloff = 15
 vim.opt.sidescrolloff = 10
 vim.opt.wrap = false
 
--- how diff splits are done
-vim.opt.diffopt = 'vertical'
-
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
@@ -136,6 +133,9 @@ require('lazy').setup({
       { '<leader>gu', '<cmd>Gitsigns undo_stage_hunk<CR>', desc = '[G]it, [U]nto Stage Hunk' },
     },
     opts = {
+      diff_opts = {
+        vertical = true,
+      },
       signs = {
         add = { text = '+' },
         change = { text = '~' },
