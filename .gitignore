@@ -25,3 +25,17 @@ repos
 .config
 .cache
 .cargo
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.espressif
+.gitconfig
+.ipython
+.nuget
+.python_history
+.templateengine
+Demo dataset
+Videos
+esp
+steam
