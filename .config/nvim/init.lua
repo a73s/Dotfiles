@@ -1,47 +1,62 @@
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.expandtab = true
+
+vim.o.winborder = 'rounded'
+-- HACK: fix the current telescope tot liking vim.o.winborder, remove later when supported
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TelescopeFindPre",
+  callback = function()
+    vim.opt_local.winborder = "none"
+    vim.api.nvim_create_autocmd("WinLeave", {
+      once = true,
+      callback = function()
+        vim.opt_local.winborder = "rounded"
+      end,
+    })
+  end,
+})
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.o.showmode = false
 -- Enable break indent
-vim.opt.breakindent = true
+vim.o.breakindent = true
 -- Save undo history
-vim.opt.undofile = true
+vim.o.undofile = true
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 -- Decrease mapped sequence wait time
-vim.opt.timeoutlen = 3000
+vim.o.timeoutlen = 3000
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 -- Sets how neovim will display certain whitespace characters in the editor.
-vim.opt.list = true
+vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-vim.opt.cursorline = true
-vim.opt.scrolloff = 15
-vim.opt.sidescrolloff = 10
-vim.opt.wrap = false
+vim.o.inccommand = 'split'
+vim.o.cursorline = true
+vim.o.scrolloff = 15
+vim.o.sidescrolloff = 10
+vim.o.wrap = false
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
-vim.opt.confirm = false
+vim.o.confirm = false
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
@@ -69,7 +84,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
 -- disable extending single line comments when hitting enter
@@ -88,8 +103,8 @@ vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "WinEnter"}, {
   desc = "Toggle on relative numbers",
   group = "custom-numbertoggle",
   callback = function()
-    if vim.opt.number then
-            vim.opt.relativenumber = true
+    if vim.o.number then
+            vim.o.relativenumber = true
     end
   end,
 })
@@ -97,8 +112,8 @@ vim.api.nvim_create_autocmd({"BufLeave", "FocusLost", "WinLeave"}, {
   desc = "Toggle off relative numbers",
   group = "custom-numbertoggle",
   callback = function()
-    if vim.opt.number then
-            vim.opt.relativenumber = false
+    if vim.o.number then
+            vim.o.relativenumber = false
     end
   end,
 })
@@ -151,7 +166,7 @@ require('lazy').setup({
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
-      -- this setting is independent of vim.opt.timeoutlen
+      -- this setting is independent of vim.o.timeoutlen
       delay = 0,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
@@ -308,12 +323,12 @@ require('lazy').setup({
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       {
-        'williamboman/mason.nvim',
+        'mason-org/mason.nvim',
         opts = {
           PATH = 'append',
         },
       },
-      'williamboman/mason-lspconfig.nvim',
+      'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
@@ -332,8 +347,6 @@ require('lazy').setup({
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
-
-
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -412,16 +425,6 @@ require('lazy').setup({
                 vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
               end,
             })
-          end
-
-          -- The following code creates a keymap to toggle inlay hints in your
-          -- code, if the language server you are using supports them
-          --
-          -- This may be unwanted, since they displace some of your code
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
           end
         end,
       })
@@ -707,8 +710,8 @@ require('lazy').setup({
   },
 
   require('basic_plugins'),
-  require('ai_plugins'),
-  require('debug_plugins')
+  -- require('ai_plugins'),
+  -- require('debug_plugins')
 },
 
 {
