@@ -2,7 +2,7 @@ PS1='\[\e[32m\]\u@\H\[\e[0m\]:\[\e[32m\]\w\[\e[0m\]\\$ '
 
 export EDITOR=/bin/vim
 
-alias ssh_server="ssh server@71.85.150.185 -p 16976"
+alias ssh_server="ssh server@192.168.1.64 -p 16976"
 
 function detach() {
 	"$@" &
