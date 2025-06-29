@@ -52,7 +52,7 @@ window#waybar {
 #battery.critical,
 #battery.warning,
 #clock {
-  font-family: BitstromWera Nerd Font;
+  font-family: Ubuntu Nerd Font;
   font-size: 14px;
   font-weight: 400;
   color: #202020;
