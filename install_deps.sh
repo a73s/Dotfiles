@@ -22,8 +22,8 @@ cd ~/Downloads
 # release version should be updated periodically
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaMono.zip
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Ubuntu.zip
-unzip CascadiaMono.zip
-unzip Ubuntu.zip
+unzip CascadiaMono.zip -d CascadiaMono
+unzip Ubuntu.zip -d Ubuntu
 mv CascadiaMono ~/.local/share/fonts/
 mv Ubuntu ~/.local/share/fonts/
 rm CascadiaMono.zip
