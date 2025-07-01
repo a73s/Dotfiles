@@ -4,6 +4,8 @@
 sudo dnf copr enable -y solopasha/hyprland
 sudo dnf copr enable -y monkeygold/nautilus-open-any-terminal
 sudo dnf install -y hyprland fd-find wofi ripgrep nvim hypridle waybar hyprlock alacritty swaybg mako network-manager-applet xfce-polkit gnome-keyring blueman brightnessctl grim slurp wireplumber playerctl xfce-polkit git neovim nextcloud-client nextcloud-client-nautilus pip fish seahorse nautilus-open-any-terminal podman podman-compose
+sudo dnf group install c-development
+sudo dnf group install container-management
 
 # Set up virtualization
 sudo dnf group install -y virtualization
@@ -29,6 +31,11 @@ mv Ubuntu ~/.local/share/fonts/
 rm CascadiaMono.zip
 rm Ubuntu.zip
 cd ~/
+
+# Add some file templates
+touch ~/Templates/blank
+touch ~/Templates/text.txt
+echo "#!/bin/python3" >> ~/Templates/python.py
 
 # Bash config stuff
 echo "source ~/bashcfg.sh" >> ~/.bashrc
