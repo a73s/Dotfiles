@@ -89,8 +89,8 @@ return{
     opts = {
       min_window_height = 20,
       separator = '⸺',
-      max_linex = 6,
-      multiline_threshold = 6,
+      max_lines = 5,
+      multiline_threshold = 1,
     },
   },
 }
