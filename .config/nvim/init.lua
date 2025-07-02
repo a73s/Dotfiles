@@ -146,6 +146,7 @@ require('lazy').setup({
       { '<leader>gb', '<cmd>Gitsigns blame<CR>', desc = '[G]it, [B]lame' },
       { '<leader>gs', '<cmd>Gitsigns stage_hunk<CR>', desc = '[G]it, [S]tage Hunk' },
       { '<leader>gu', '<cmd>Gitsigns undo_stage_hunk<CR>', desc = '[G]it, [U]nto Stage Hunk' },
+      { '<leader>gv', '<cmd>Gitsigns preview_hunk_inline<CR>', desc = '[G]it, Pre[V]iew Hunk' },
     },
     opts = {
       diff_opts = {
