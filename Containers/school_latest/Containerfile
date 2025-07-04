@@ -1,0 +1,13 @@
+FROM fedora
+
+RUN dnf copr enable -y petersen/haskell-language-server
+
+RUN dnf install -y bzip2 cargo catch catch2-devel cflow clang clang-tools-extra clippy cmake cppcheck cscope diffutils doctest doxygen doxygen-doxywizard eza file fish gcc gcc-c++ gcovr gdb ghc ghc-Agda ghc-QuickCheck* ghc-aeson* ghc-base-devel ghc-base-doc ghc-base-prelude-doc ghc-cabal-doctest* ghc-crypton-* ghc-doctest* ghc-entropy* ghc-hlint ghc-idris ghc-json* ghc-markdown-unlit ghc-prof ghc-quickcheck* ghc-toml* ghc-yaml* git git-clang-format git-delta glibc-devel.i686 gnupg2 gpgme gpgme-devel graphviz grep haskell-language-server helix highlight hlint hostname htop httpd iproute iputils java-latest-openjdk java-latest-openjdk-devel jq jupyterlab kakoune kcachegrind libasan llvm ltrace lua lua-devel lua-filesystem lua-lpeg luajit lynx make mathjax mc meld micro mkpasswd monkeytype mtr nano nasm nc ncurses neovim nmap nu octave octave-doctest openjfx openssh-server openssl openssl-devel ormolu p7zip pandoc pdflatex perl poetry swi-prolog python-jupytext-doc python3-GitPython python3-Levenshtein python3-black python3-devel python3-docopt python3-flask python3-gitlab python3-gpg python3-ipython python3-jedi python3-jupyter-core python3-jupyterlab python3-jupyterlab-jupytext python3-jupytext python3-matplotlib python3-mechanize python3-mypy python3-numpy python3-pandas python3-pip python3-poetry python3-pudb python3-pyflakes python3-pygments python3-pytest python3-requests python3-scapy python3-scikit* python3-scipy python3-seaborn python3-setuptools python3-spyder python3-toml python3-types-requests qemu-* qtcreator ranger ripgrep rr rust rust-debugger-common rust-doc rust-gdb rust-lldb rust-src rustfmt rustup sbcl sed shfmt stack strace tmux traceroute tre valgrind vim-X11 vim-enhanced vim-filesystem vim-fugitive vim-jedi vis wc wget whois xclip xsel yasm yq zsh --skip-unavailable && dnf clean all
+
+RUN pip3 install --no-cache-dir --upgrade automata-lib ete3 mediapy pandas-stubs polars py2cfg qiime-default-reference scikit-bio valgreen
+
+RUN cd root;git clone https://github.com/a73s/Dotfiles;mv Dotfiles/.git/ .;rm -rf Dotfiles;git stash;git stash drop
+RUN rm -rf /root/.local/share
+RUN pip install pynvim wfdb pandas numpy
+RUN dnf install -y luarocks
+RUN nvim --headless "+Lazy! restore" +qa
