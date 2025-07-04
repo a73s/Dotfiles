@@ -76,7 +76,7 @@ wifi_info=$(nmcli -t -f active,ssid,signal,security dev wifi | grep "^yes")
 
 # If no ESSID is found, set a default value
 if [ -z "$wifi_info" ]; then
-  essid="No Connection"
+  essid=""
   signal=0
   tooltip="No Connection"
 else

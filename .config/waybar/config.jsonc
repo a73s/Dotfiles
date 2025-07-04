@@ -30,14 +30,6 @@
     "clock#time",
   ],
 
-  "custom/rofi": {
-		"format": "<span color='#fbf1c7' >󰮯</span>",
-		"on-click": "rofi -show drun",
-    "on-click-right": "~/.config/waybar/scripts/power-menu.sh",
-    "escape" : true,
-    "tooltip" : false
-	},
-
   // Modules configuration
   "hyprland/workspaces": {
     "disable-scroll": true,
@@ -123,18 +115,6 @@
     // "tooltip-format": "Standard Time: {:%I:%M %p}",
     "min-length": 8,
     "max-length": 12
-  },
-
-  "custom/backlight": {
-    "exec": "~/.config/waybar/scripts/brightness-control.sh",
-    "return-type": "json",
-    "format": "{}",
-    "tooltip": true,
-    "on-scroll-up": "~/.config/waybar/scripts/brightness-control.sh -o i",
-    "on-scroll-down": "~/.config/waybar/scripts/brightness-control.sh -o d",
-    "interval": 1,
-    "min-length": 6,
-    "max-length": 6
   },
 
   "custom/paddc": {
