@@ -17,8 +17,7 @@ if status is-interactive
     end
 
     set -U fish_greeting ""
-
-    alias ssh_server="ssh server@71.85.150.185 -p 16976"
+    set fish_color_command blue
 
     function school_container
         podman run --network=podman -it --rm --privileged --mount type=bind,source="$(pwd)"/,target=/host_files --workdir=/host_files localhost/school_custom fish
@@ -32,10 +31,6 @@ if status is-interactive
         podman run --network=podman -it --privileged --mount type=bind,source="$(pwd)"/,target=/host_files --workdir=/host_files $argv
     end
 
-    alias g="git"
-    alias gs="git status"
-    alias nv="nvim"
-    alias vim="nvim --clean"
     alias ccat="highlight --out-format=ansi"
     alias ls="ls -h --color=auto --group-directories-first"
     alias list="ls -Al"
